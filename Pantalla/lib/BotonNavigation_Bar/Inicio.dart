@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import '../main.dart';
 import 'ElementoMenuPrincipal.dart';
 
 /*
@@ -44,7 +45,7 @@ class _InicioState extends State<Inicio> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 50), //para separar de arriba el margen.
+        margin: EdgeInsets.only(top: 5), //para separar de arriba el margen.
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20)
         ),
@@ -53,16 +54,21 @@ class _InicioState extends State<Inicio> {
             gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), //elementos por fila
             itemBuilder: (context, index){
               return Container(
-                margin: EdgeInsets.zero,
-                color: Colors.brown,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromARGB(1000, 0, 154, 208),
+                ),
                 child: GestureDetector(
+                  
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> ElementoMenu(MenuPrincipal[index].nombre, MenuPrincipal[index].foto)));
                   },
                   child: Column(
                     children: [
+                      Image.asset(IMAGEN_LOGO, height: 100.0,),
                       Text(MenuPrincipal[index].nombre)
-
+                      //poner la foto
                     ],
                   ),
                 )
@@ -70,9 +76,6 @@ class _InicioState extends State<Inicio> {
             }
         ),
       ),
-      
-      
-      
     );
   }
 }

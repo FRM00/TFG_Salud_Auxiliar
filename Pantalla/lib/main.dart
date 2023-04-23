@@ -3,6 +3,8 @@ import 'package:prueba/BotonNavigation_Bar/Inicio.dart';
 import 'package:prueba/IniciarSesion.dart';
 import 'package:prueba/Registrarse.dart';
 
+import 'BotonNavigation_Bar/Cuenta.dart';
+
 
 
 
@@ -67,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Inicio()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
         },                                                            //cambiar por iniciar sesion
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
