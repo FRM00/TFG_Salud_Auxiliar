@@ -58,7 +58,7 @@ class IniciarSesion extends StatelessWidget {
 
               decoration: InputDecoration(
                 icon: Icon(Icons.email),
-                hintText: "ejemplo@email.com",
+                hintText: "ejemplo@gmail.com",
                 labelText: "Correo Electrónico",
               ),
             ),
@@ -100,7 +100,7 @@ Widget botonIniciarSesion() {
 
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
-
+                  //mandar datos al servidor
                 }
           );
         }
