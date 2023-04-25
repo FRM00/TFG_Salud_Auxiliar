@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54130657216",
+    "project_id": "saludauxiliar-e7d7c",
+    "storage_bucket": "saludauxiliar-e7d7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54130657216:android:f5d44db1611346fd492a25",
+        "android_client_info": {
+          "package_name": "com.example.prueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54130657216-t4kl1luj7gnp8gqt2ukmlgfavfl6jpjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRqal9dq-K9E5D0ysRGlKSrDufYMGEepg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54130657216-t4kl1luj7gnp8gqt2ukmlgfavfl6jpjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

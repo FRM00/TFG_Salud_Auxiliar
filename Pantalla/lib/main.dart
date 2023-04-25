@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba/BotonNavigation_Bar/Inicio.dart';
 import 'package:prueba/IniciarSesion.dart';
 import 'package:prueba/Registrarse.dart';
 
 import 'BotonNavigation_Bar/Cuenta.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
 
@@ -12,8 +14,11 @@ const String IMAGEN_LOGO = "assets/logo1.jpg";
 const String NOMBRE_APP = "Salud Auxiliar";
 
 
-void main() {
-  runApp(const MyApp());
+main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp().then((value){
+    runApp(MyApp());
+  });
 }
 
 
@@ -69,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+         // FirebaseFirestore.instance();
           Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
         },                                                            //cambiar por iniciar sesion
       ), // This trailing comma makes auto-formatting nicer for build methods.

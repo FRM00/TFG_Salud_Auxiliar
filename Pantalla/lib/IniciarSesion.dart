@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba/BotonNavigation_Bar/MenuInferior.dart';
@@ -99,6 +100,8 @@ Widget botonIniciarSesion() {
             ),
 
                 onPressed: () {
+              print("dddddddddddddddddddddddddddddd");
+                  getUsuarios();
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
                   //mandar datos al servidor
                 }
@@ -145,7 +148,14 @@ Widget botonIniciarSesion() {
     );
   }
 
-
+   void getUsuarios() async{
+     CollectionReference referencia = FirebaseFirestore.instance.collection("usuarios");
+     QuerySnapshot usua = await referencia.get();
+     for(var doc in usua.docs){
+       print(doc.data());
+     }
+     print(referencia.doc());
+   }
 
 
 }
