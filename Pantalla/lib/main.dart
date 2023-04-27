@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 
 
 const String IMAGEN_LOGO = "assets/logo1.jpg";
+const String IMAGEN_GOOGLE = "assets/google.png";
 const String NOMBRE_APP = "Salud Auxiliar";
 
 
@@ -49,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = true;
   var duration = const Duration(seconds: 5);
+  final firebas = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 100.0,),
-            Image.asset(IMAGEN_LOGO, height: 180.0,),
 
+      SizedBox(height: 100.0,),
+            Image.asset(IMAGEN_LOGO, height: 180.0,),
           //  SizedBox(height: 40.0,),
             //CircularProgressIndicator(color: Color.fromRGBO(0, 154, 208, 0.0),),
 
@@ -74,13 +76,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-         // FirebaseFirestore.instance();
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
+          print("Main");
+    print(firebas.collection("usuarios").doc());
+
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
         },                                                            //cambiar por iniciar sesion
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+void pintar(){
+  print(firebas.collection("usuarios"));
 
+}
   void loading() async{
     showDialog(
         context: context,

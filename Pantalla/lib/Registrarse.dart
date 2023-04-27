@@ -32,7 +32,7 @@ class Registrarse extends StatelessWidget {
             i.textoRegistrarse(),
 
             SizedBox(height: 2.0,),
-            i.botonIniciarSesion(),
+            i.botonIniciarRegistrarUser("Registrar Usuario"),
           ],
         ),
       ),

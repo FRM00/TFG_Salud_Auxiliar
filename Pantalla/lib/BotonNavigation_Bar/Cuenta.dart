@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../GoogleInicioSesion.dart';
 import '../IniciarSesion.dart';
 import '../main.dart';
 import 'MenuInferior.dart';
@@ -82,17 +83,20 @@ class Cuenta extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Color.fromARGB(1000, 0, 154, 208)),
             borderRadius: BorderRadius.circular(10)
-            
+
           ),
           padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0, ),
           child: Text(
-            "Cambiar Contraseña",
+            "Log Out",
             style: TextStyle(fontSize: 18, color: Color.fromARGB(1000, 0, 154, 208),),
           ),
-        ),
 
-        onPressed: () {
-         // Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+        ),
+        onPressed: () async {
+          await GoogleInicioSesion().logOutGoogle();
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
           //poner mensaje emergente de exito o fallo
         }
     );
