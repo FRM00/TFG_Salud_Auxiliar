@@ -17,9 +17,6 @@ class IniciarSesion extends StatelessWidget {
   TextEditingController contrasena = TextEditingController();
   TextEditingController email = TextEditingController();
   final firebase = FirebaseFirestore.instance;
-  final Stream<QuerySnapshot> f = FirebaseFirestore.instance.collection("usuarios").snapshots();
-  DatabaseReference ref = FirebaseDatabase.instance.ref();
-
 
   IniciarSesion();
 
@@ -107,6 +104,9 @@ class IniciarSesion extends StatelessWidget {
     }
   }
 
+
+
+
 Widget botonIniciarRegistrarUser(String texto) {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -123,6 +123,7 @@ Widget botonIniciarRegistrarUser(String texto) {
             ),
 
                 onPressed: () {
+
                   if(texto == "Registrar Usuario"){
                     registroUsuario();
                   } else if (texto == "Iniciar Sesión"){

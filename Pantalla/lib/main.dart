@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba/BotonNavigation_Bar/Inicio.dart';
 import 'package:prueba/IniciarSesion.dart';
@@ -6,6 +7,7 @@ import 'package:prueba/Registrarse.dart';
 
 import 'BotonNavigation_Bar/Cuenta.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'GoogleInicioSesion.dart';
 import 'firebase_options.dart';
 
 
@@ -77,7 +79,10 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print("Main");
-    print(firebas.collection("usuarios").doc());
+          getUsuario();
+          print("despues");
+
+          //print(firebas.collection("usuarios").doc());
 
     Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
         },                                                            //cambiar por iniciar sesion
@@ -88,6 +93,21 @@ void pintar(){
   print(firebas.collection("usuarios"));
 
 }
+
+  leerDatos() async {
+    try{
+      final ref = FirebaseDatabase.instance.ref();
+      final snapshot = await ref.child('usuarios').get();
+      if (snapshot.exists) {
+        print("Dentro de leerDatos");
+        print(snapshot.value);
+      } else {
+        print('No data available.');
+      }
+    }catch(e){
+      print(e);
+    }
+  }
   void loading() async{
     showDialog(
         context: context,
@@ -96,6 +116,25 @@ void pintar(){
     }
     );
   }
+/*
+ getUsuario() async {
+    List<Usuario> user = [];
+print("arriba");
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('usuarios').get();
+    print(snapshot.toString());
+
+    if (snapshot.exists) {
+      print(snapshot.value);
+    } else {
+      print('No data available.');
+    }
+}
+*/
+
+
+
+
 
 }
 
