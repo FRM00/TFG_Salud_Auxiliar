@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -80,19 +82,24 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           print("Main");
           //getUsuario();
+
+          final a = firebas.collection("usuarios");
+          final q = a.where("correo", isEqualTo: true).get().then(
+                  (DocumentSnapshot doc) {
+                final data = doc.data() as Map<String, dynamic>;
+                print("Mainllllll");
+
+                print(data);
+              };
+
           print("despues");
 
-          //print(firebas.collection("usuarios").doc());
 
     Navigator.push(context, MaterialPageRoute(builder: (context)=> IniciarSesion()));
         },                                                            //cambiar por iniciar sesion
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-void pintar(){
-  print(firebas.collection("usuarios"));
-
-}
 
   leerDatos() async {
     try{

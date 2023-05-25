@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba/BotonNavigation_Bar/MenuInferior.dart';
@@ -37,7 +38,6 @@ class IniciarSesion extends StatelessWidget {
 
           SizedBox(height: 30.0,),
           Image.asset(IMAGEN_LOGO, height: 240.0,),
-
           userTextField(),
           passwordTextField(),
           textoRegistrarse(),
@@ -128,6 +128,16 @@ Widget botonIniciarRegistrarUser(String texto) {
                     registroUsuario();
                   } else if (texto == "Iniciar Sesión"){
                   //  existeNombreUser(email.toString());
+                    final au = FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: "fer88@fer.com",
+                        password: "fer");
+                        if (au != null){
+                          print("deeeentro");
+
+                        }else{
+                          print("fueeera");
+
+                        }
                   }
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
                   //mandar datos al servidor
@@ -184,6 +194,31 @@ Widget botonIniciarRegistrarUser(String texto) {
         }
     );
   }
+
+  void comprobarExisteUsuario(){
+    //metodo para comprobar si existe el usuario
+    final a = firebase.collection("usuarios");
+    final q = a.where("correo", isEqualTo: "p@54p.com").get().then(
+          (querySnapshot) {
+        for (var docSnapshot in querySnapshot.docs) {
+          if (docSnapshot.exists){
+            print('${docSnapshot.id} => ${docSnapshot.data()}');
+
+          }else{
+            print("rrfdr");
+
+          }
+        }
+      },
+    );
+  }
+
+
+
+
+
+
+
 
 
 
