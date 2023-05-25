@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print("Main");
-          getUsuario();
+          //getUsuario();
           print("despues");
 
           //print(firebas.collection("usuarios").doc());
