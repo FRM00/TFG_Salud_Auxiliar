@@ -84,14 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
           //getUsuario();
 
           final a = firebas.collection("usuarios");
-          final q = a.where("correo", isEqualTo: true).get().then(
+         /* final q = a.where("correo", isEqualTo: true).get().then(
                   (DocumentSnapshot doc) {
                 final data = doc.data() as Map<String, dynamic>;
                 print("Mainllllll");
 
                 print(data);
               };
-
+*/
           print("despues");
 
 
