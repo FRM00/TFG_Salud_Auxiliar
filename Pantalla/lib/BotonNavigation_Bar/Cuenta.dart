@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../GoogleInicioSesion.dart';
-import '../IniciarSesion.dart';
 import '../main.dart';
 import 'MenuInferior.dart';
 
@@ -14,9 +13,14 @@ const String CONTRASENA = "Ingrese su contraseña: ";
 const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
 const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
 
-class Cuenta extends StatelessWidget {
+class Cuenta extends StatefulWidget {
   const Cuenta({Key? key}) : super(key: key);
+  @override
+  State<Cuenta> createState() => _CuentaState();
+}
 
+class _CuentaState extends State<Cuenta> {
+  @override
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -92,13 +96,53 @@ class Cuenta extends StatelessWidget {
           ),
 
         ),
-        onPressed: () async {
-          await GoogleInicioSesion().logOutGoogle();
-          // Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+        onPressed: () {
+          GoogleInicioSesion().logOutGoogle();
 
-          // Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
-          //poner mensaje emergente de exito o fallo
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Log Out'),
+              content: const Text('¡Sesión cerrada con éxito!'),
+              actions: <Widget>[
+                TextButton(
+                    child: const Text('Cerrar'),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) =>
+                              MyHomePage(title: "Salud auxiliar")));
+                    }
+                ),
+              ],
+            ),
+          );
         }
+    );
+  }
+  Widget boton(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            /*TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),*/
+            TextButton(
+              child: const Text('OK'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) =>
+                          MyHomePage(title: "Salud auxiliar")));
+                }
+                ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
     );
   }
 }

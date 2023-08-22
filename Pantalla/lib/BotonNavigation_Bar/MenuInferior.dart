@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'Ajustes.dart';
@@ -25,7 +27,12 @@ class MenuInferior extends State<EstadoPaginas> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return WillPopScope( //esta clase captura el boton para ir atras. Si es false lo ignora
+      onWillPop: () async {
+    return false;
+    },
+
+      child : MaterialApp(
       home: Scaffold(
         body: paginas[estadoActual],
 
@@ -49,6 +56,7 @@ class MenuInferior extends State<EstadoPaginas> {
           ],
         ),
 
+      ),
       ),
     );
   }
