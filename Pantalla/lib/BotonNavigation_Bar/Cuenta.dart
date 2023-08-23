@@ -1,5 +1,7 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +35,10 @@ class _CuentaState extends State<Cuenta> {
         children: [
           Image.asset(IMAGEN_LOGO, height: 180.0,),
 
-          fila(NOMBRE_USER, "valor"),
+          fila(NOMBRE_USER, getNombreUser()!),
           SizedBox(height: 20,),
 
-          fila(CORREO_ELECTRONICO, "Correo"),
+          fila(CORREO_ELECTRONICO, getEmailUser()!),
 
           SizedBox(height: 20,),
 
@@ -58,6 +60,18 @@ class _CuentaState extends State<Cuenta> {
       )
 
     );
+  }
+
+  String? getNombreUser(){
+    final user = FirebaseAuth.instance.currentUser;
+    String? t = user?.displayName;
+    return t;
+  }
+
+  String? getEmailUser(){
+    final user = FirebaseAuth.instance.currentUser;
+    String? t = user?.email;
+    return t;
   }
 
   Widget campo(String identificador){

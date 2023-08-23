@@ -15,7 +15,7 @@ import 'firebase_options.dart';
 
 
 
-const String IMAGEN_LOGO = "assets/logo1.jpg";
+const String IMAGEN_LOGO = "assets/logo_sin_fondo.png";
 const String IMAGEN_GOOGLE = "assets/google.png";
 const String NOMBRE_APP = "Salud Auxiliar";
 const String INICIAR_SESION = "Iniciar Sesión";
@@ -66,9 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if(comprobarLogin()){
       Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
-      return Scaffold();
+      return WillPopScope( //esta clase captura el boton para ir atras. Si es false lo ignora
+        onWillPop: () async {
+          return false;
+        }, child: Scaffold(),
+      );
     }else {
-      return Scaffold(
+      return  WillPopScope( //esta clase captura el boton para ir atras. Si es false lo ignora
+          onWillPop: () async {
+        return false;
+      },
+        child: Scaffold(
         resizeToAvoidBottomInset: false,
 
         appBar: AppBar(
@@ -87,11 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
               userTextField(),
               passwordTextField(),
               textoRegistrarse(),
-              botonIniciarRegistrarUser("Iniciar Sesión"),
+              botonIniciarSesion("Iniciar Sesión"),
               iniciarSesionConGoogle(),
             ],
           ),
         ),
+        )
       );
     }
   }
@@ -107,13 +116,30 @@ class _MyHomePageState extends State<MyHomePage> {
         print('User is currently signed out!');
       } else {
         existeLogin = true;
+        print("Usuario:");
+        print(user.displayName);
+
         print('User is signed in!');
       }
     });
-
     return existeLogin;
   }
-
+  /*
+  String nombreUsuarioLogin(){
+    Null auxUser = null;
+    FirebaseAuth.instance
+        .authStateChanges()
+        .listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        return user.displayName;
+        print('User is signed in!');
+      }
+    });
+    return "";
+  }
+*/
   Widget userTextField() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -156,27 +182,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  registroUsuario() async {
-    try{
-      await firebase.collection("usuarios").doc().set({
-        "contrasena": contrasena.text,
-        "correo": email.text
-      }
+
+  inicioSesion() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text,
+          password: contrasena.text
       );
-    }catch(e){
-      print("Error al registrar usuario");
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     }
   }
 
 
 
-
-   Widget botonIniciarRegistrarUser(String texto) {
+   Widget botonIniciarSesion(String texto) {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
           return MaterialButton(
               child: Container(
-
                   padding: EdgeInsets.symmetric(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,24 +216,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
               onPressed: () {
+                      if(comprobarLogInUserContrasena(email.text, contrasena.text)){
+                        inicioSesion();
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
 
-                if(texto == "Registrar Usuario"){
-                  registroUsuario();
-                } else if (texto == "Iniciar Sesión"){
-                  //  existeNombreUser(email.toString());
-                  final au = FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: "fer88@fer.com",
-                      password: "fer");
-                  if (au != null){
-                    print("deeeentro");
+                      }else{
+                        mensajeAlerta("sd", "titulo", "descripcion");
+                      }
 
-                  }else{
-                    print("fueeera");
-
-                  }
-                }
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
-                //mandar datos al servidor
               }
           );
         }
@@ -239,6 +258,40 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  bool comprobarLogInUserContrasena(String _correo, String _contrasena){
+    bool existe = false;
+    print("_correoooooooooooooo");
+    print(_correo);
+    print(_contrasena);
+    print(existe);
+
+
+    final coleccionUsuarios = FirebaseFirestore.instance.collection('usuarios');
+
+    coleccionUsuarios.get().then((QuerySnapshot querySnapshot) => {
+        querySnapshot.docs.forEach((doc) {
+          print("dentro del for eaj");
+
+          print(doc["correo"]);
+          print(doc["contrasena"]);
+          print(existe);
+
+
+          if(_correo == doc["correo"]){
+            print(existe);
+
+            if (_contrasena == doc["contrasena"]){
+              print(existe);
+              print("aqui queremos entrar");
+              existe = true;
+            }
+          }
+      }),
+    });
+    print("final: $existe");
+
+    return existe;
+  }
   Widget textoRegistrarse() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -277,7 +330,25 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
+ void mensajeAlerta (String textoBoton, String titulo, String descripcion){
+  showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: const Text("Error"),
+      content: const Text('No se ha podido iniciar sesion'),
+      actions: <Widget>[
+        TextButton(
+            child: const Text("textoBoton"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) =>
+                      MyHomePage(title: "Salud auxiliar")));
+            }
+        ),
+      ],
+    ),
+  );
+}
 
 
 

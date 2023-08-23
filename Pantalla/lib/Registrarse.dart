@@ -15,6 +15,8 @@ class Registrarse extends StatelessWidget {
   final firebase = FirebaseFirestore.instance;
   TextEditingController contrasena = TextEditingController();
   TextEditingController email = TextEditingController();
+
+  get context => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +36,10 @@ class Registrarse extends StatelessWidget {
             passwordTextField(),
 
             SizedBox(height: 2.0,),
-            textoRegistrarse(),
+            //textoRegistrarse(),
 
             SizedBox(height: 2.0,),
-            botonIniciarRegistrarUser("Registrar Usuario"),
+            botonRegistrarUsuario("Registrar Usuario"),
           ],
         ),
       ),
@@ -85,8 +87,25 @@ class Registrarse extends StatelessWidget {
         }
     );
   }
-
+/*
   registroUsuario() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email.text,
+          password: contrasena.text
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+*/
+  void registroUsuario() async {
     try{
       await firebase.collection("usuarios").doc().set({
         "contrasena": contrasena.text,
@@ -100,13 +119,11 @@ class Registrarse extends StatelessWidget {
 
 
 
-
-  Widget botonIniciarRegistrarUser(String texto) {
+  Widget botonRegistrarUsuario(String texto) {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
           return MaterialButton(
               child: Container(
-
                   padding: EdgeInsets.symmetric(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -115,26 +132,12 @@ class Registrarse extends StatelessWidget {
                     ],
                   )
               ),
-
               onPressed: () {
+                registroUsuario();
 
-                if(texto == "Registrar Usuario"){
-                  registroUsuario();
-                } else if (texto == "Iniciar Sesión"){
-                  //  existeNombreUser(email.toString());
-                  final au = FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: "fer88@fer.com",
-                      password: "fer");
-                  if (au != null){
-                    print("deeeentro");
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+                  print("Usuario registrado correctamente");
 
-                  }else{
-                    print("fueeera");
-
-                  }
-                }
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
-                //mandar datos al servidor
               }
           );
         }
@@ -168,7 +171,7 @@ class Registrarse extends StatelessWidget {
         }
     );
   }
-
+/*
   Widget textoRegistrarse() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -188,7 +191,7 @@ class Registrarse extends StatelessWidget {
         }
     );
   }
-
+*/
   void comprobarExisteUsuario(){
     //metodo para comprobar si existe el usuario
     final a = firebase.collection("usuarios");
@@ -206,6 +209,30 @@ class Registrarse extends StatelessWidget {
       },
     );
   }
+
+  void mensajeAlerta (String textoBoton, String titulo, String descripcion){
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Error"),
+        content: const Text('No se ha podido registrar el usuario'),
+        actions: <Widget>[
+          TextButton(
+              child: const Text("textoBoton"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) =>
+                        MyHomePage(title: "Salud auxiliar")));
+              }
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+
 
 }
 

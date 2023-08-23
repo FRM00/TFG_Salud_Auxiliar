@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -37,11 +38,18 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+
+  String? nombreUser(){
+    final user = FirebaseAuth.instance.currentUser;
+    String? t = user?.displayName;
+    return "Hola " + t!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Inicio"),
+        title: Text(nombreUser()!),
         backgroundColor: Colors.blue,
       ),
       body: Container(
