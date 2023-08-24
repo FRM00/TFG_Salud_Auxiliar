@@ -2,6 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:prueba/Detalles/Convulsiones.dart';
+import 'package:prueba/Detalles/Fractura.dart';
+import 'package:prueba/Detalles/Hemorragia.dart';
+import 'package:prueba/Detalles/Intoxicaciones.dart';
+import 'package:prueba/Detalles/Obstruccion.dart';
+import 'package:prueba/Detalles/ParadaCardio.dart';
+import '../Detalles/Quemaduras/Quemaduras.dart';
 import '../main.dart';
 import 'ElementoMenuPrincipal.dart';
 
@@ -68,10 +75,23 @@ class _InicioState extends State<Inicio> {
                     color: Color.fromARGB(1000, 0, 154, 208),
                 ),
                 child: GestureDetector(
-                  
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ElementoMenu(MenuPrincipal[index].nombre, MenuPrincipal[index].foto)));
-                  },
+                    if (index == 0){ //quemaduras
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Quemaduras()));
+                    }else if (index == 1){ //intoxicaciones
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Intoxicaciones()));
+                    }else if (index == 2){ //convulsiones
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Convulsiones()));
+                    }else if (index == 3){ //parada cardiorespiratoria
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ParadaCardio()));
+                    }else if (index == 4){ //obstruccionvia aerea
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Obstruccion()));
+                    }else if (index == 5){ //hemorragias
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Hemorragia()));
+                    }else if (index == 6){ //fracturas
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Fractura()));
+                    }
+                    },
                   child: Column(
                     children: [
                       Image.asset(IMAGEN_LOGO, height: 100.0,),
