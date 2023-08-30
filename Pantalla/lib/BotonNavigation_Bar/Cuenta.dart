@@ -5,15 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Constantes.dart';
 import '../GoogleInicioSesion.dart';
 import '../main.dart';
 import 'MenuInferior.dart';
 
-const String NOMBRE_USER = "Nombre de Usuario: ";
-const String CORREO_ELECTRONICO = "Su correo electrónico: ";
-const String CONTRASENA = "Ingrese su contraseña: ";
-const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
-const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
+
 
 class Cuenta extends StatefulWidget {
   const Cuenta({Key? key}) : super(key: key);
@@ -97,19 +94,7 @@ class _CuentaState extends State<Cuenta> {
 
   Widget botonCambiarContrasena(){
     return MaterialButton(
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(1000, 0, 154, 208)),
-            borderRadius: BorderRadius.circular(10)
-
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0, ),
-          child: Text(
-            "Log Out",
-            style: TextStyle(fontSize: 18, color: Color.fromARGB(1000, 0, 154, 208),),
-          ),
-
-        ),
+        child: estiloBotonHueco("Log Out"),
         onPressed: () {
           GoogleInicioSesion().logOutGoogle();
 

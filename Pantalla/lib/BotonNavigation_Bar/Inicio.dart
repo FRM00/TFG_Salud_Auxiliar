@@ -8,6 +8,7 @@ import 'package:prueba/Detalles/Hemorragia.dart';
 import 'package:prueba/Detalles/Intoxicaciones.dart';
 import 'package:prueba/Detalles/Obstruccion.dart';
 import 'package:prueba/Detalles/ParadaCardio.dart';
+import '../Constantes.dart';
 import '../Detalles/Quemaduras/Quemaduras.dart';
 import '../main.dart';
 import 'ElementoMenuPrincipal.dart';

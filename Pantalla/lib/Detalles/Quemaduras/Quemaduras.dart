@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
+import '../../Constantes.dart';
 import 'QuemadurasElectricas.dart';
 import 'QuemadurasQuimicas.dart';
 import 'QuemadurasSolares.dart';
@@ -21,13 +21,14 @@ class ClaseQuemadura{
   ClaseQuemadura(this.nombre, this.foto);
 }
 
+/*
 final TiposQuemaduras = [
   ClaseQuemadura("Quemaduras Electricas", ""),
   ClaseQuemadura("Quemaduras Quimicas", ""),
   ClaseQuemadura("Quemaduras Solares", ""),
 
 ];
-
+*/
 class Quemaduras extends StatefulWidget {
   const Quemaduras({Key? key}) : super(key: key);
 
@@ -47,22 +48,28 @@ class _Quemaduras extends State<Quemaduras> {
     child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 30.0,),
-            Text("¿En qué consiste?",
-            style: TextStyle(fontSize: 15),),
-            Text("Explicacion"),
+            SizedBox(height: 25.0,),
 
-            Text("Valoración de la Quemadura"),
-            Text("Explicacion"),
+            estiloTituloDetalles("¿En qué consiste?"),
+            SizedBox(height: 5.0,),
 
-            Text("Clasificación de la Profundidad"),
-            Image.asset(IMAGEN_PROFUNDIDAD_QUEMADURA, height: 180.0,),
+            estiloExplicacionDetalles("Explicacionfresrfgsdfgdfg"),
+            SizedBox(height: 5.0,),
 
-            Text("¿Qué Hacer?"),
-            Image.asset(IMAGEN_HACER_QUEMADURAS, height: 180.0,),
+            estiloTituloDetalles("Valoración de la Quemadura"),
+            SizedBox(height: 5.0,),
 
-            Text("¿Qué NO Hacer?"),
-            Image.asset(IMAGEN_NO_HACER_QUEMADURAS, height: 180.0,),
+            estiloExplicacionDetalles("Explicacion"),
+            SizedBox(height: 5.0,),
+
+            estiloTituloDetalles("Clasificación de la Profundidad"),
+            Image.asset(IMAGEN_PROFUNDIDAD_QUEMADURAS, height: 180.0,),
+
+            estiloTituloDetalles("¿Qué Hacer?"),
+            Image.asset(IMAGEN_QUEMADURA_QUE_HACER, height: 180.0,),
+
+            estiloTituloDetalles("¿Qué NO Hacer?"),
+            Image.asset(IMAGEN_QUEMADURA_QUE_NO_HACER, height: 180.0,),
 
             botonTipoQuemadura(QUEMADURAS_ELECTRICAS),
             SizedBox(height: 5.0,),
@@ -71,7 +78,7 @@ class _Quemaduras extends State<Quemaduras> {
             SizedBox(height: 5.0,),
 
             botonTipoQuemadura(QUEMADURAS_SOLARES),
-            SizedBox(height: 5.0,),
+            SizedBox(height: 50.0,),
 
 
           ],
@@ -84,16 +91,7 @@ class _Quemaduras extends State<Quemaduras> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
           return MaterialButton(
-              child: Container(
-                  padding: EdgeInsets.symmetric(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(texto),
-                    ],
-                  )
-              ),
-
+              child: estiloBotonHueco(texto),
               onPressed: () {
                 if(texto == QUEMADURAS_ELECTRICAS) {
                   Navigator.push(context,

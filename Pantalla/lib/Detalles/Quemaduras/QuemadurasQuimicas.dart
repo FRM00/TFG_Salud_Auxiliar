@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../Constantes.dart';
+
 
 class QuemadurasQuimicas extends StatefulWidget {
   const QuemadurasQuimicas(String nombre, String foto, {Key? key}) : super(key: key);
@@ -22,11 +24,14 @@ class _QuemadurasQuimicas extends State<QuemadurasQuimicas> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 30.0,),
-              Text("¿Cómo se ha producido?",
-                style: TextStyle(fontSize: 15),),
-              Text("Explicacion"),
+              estiloTituloDetalles("¿Cómo se ha producido?"),
+              SizedBox(height: 5.0,),
 
-              Text("¿Qué hacer?"),
+              estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
+              SizedBox(height: 5.0,),
+
+              estiloTituloDetalles("¿Qué hacer?"),
+              SizedBox(height: 5.0,),
 
 
             ],

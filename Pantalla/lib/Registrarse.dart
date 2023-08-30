@@ -5,10 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'BotonNavigation_Bar/MenuInferior.dart';
+import 'Constantes.dart';
 import 'GoogleInicioSesion.dart';
 import 'main.dart';
 
-const String REGISTRARSE = "Registrar Usuario";
 
 
 class Registrarse extends StatelessWidget {

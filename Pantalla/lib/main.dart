@@ -10,16 +10,9 @@ import 'package:prueba/Registrarse.dart';
 import 'BotonNavigation_Bar/Cuenta.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'BotonNavigation_Bar/MenuInferior.dart';
+import 'Constantes.dart';
 import 'GoogleInicioSesion.dart';
 import 'firebase_options.dart';
-
-
-
-const String IMAGEN_LOGO = "assets/logo_sin_fondo.png";
-const String IMAGEN_GOOGLE = "assets/google.png";
-const String NOMBRE_APP = "Salud Auxiliar";
-const String INICIAR_SESION = "Iniciar Sesión";
-
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -205,15 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot){
           return MaterialButton(
-              child: Container(
-                  padding: EdgeInsets.symmetric(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(texto),
-                    ],
-                  )
-              ),
+              child: estiloBotonHueco(texto),
 
               onPressed: () {
                       if(comprobarLogInUserContrasena(email.text, contrasena.text)){
@@ -235,19 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         builder: (BuildContext context, AsyncSnapshot snapshot){
           return MaterialButton(
-              child: Container(
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("       Iniciar Sesión con Gmail",),
-                      Image.asset(IMAGEN_GOOGLE, height: 75,),
-
-                    ],
-                  )
-
-
-              ),
+              child: estiloBotonGoogle(TEXTO_BOTON_GOOGLE),
               onPressed: () async{
                 await GoogleInicioSesion().iniciarSesionGoogle();
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
@@ -351,14 +324,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-
-  leerDatos() async {
-
-
-
-
-
-  }
 
 
 
