@@ -95,8 +95,15 @@ class _InicioState extends State<Inicio> {
                     },
                   child: Column(
                     children: [
+                      SizedBox(height: 10.0,),
                       Image.asset(IMAGEN_LOGO, height: 100.0,),
-                      Text(MenuPrincipal[index].nombre)
+
+                      SizedBox(height: 15.0,),
+                      Text(MenuPrincipal[index].nombre,
+                        style: TextStyle(
+                          //fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),)
                       //poner la foto
                     ],
                   ),

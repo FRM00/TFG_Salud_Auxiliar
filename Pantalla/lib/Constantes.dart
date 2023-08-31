@@ -1,30 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 //carpeta raiz
 const String IMAGEN_LOGO = "assets/logo_sin_fondo.png";
 const String IMAGEN_GOOGLE = "assets/google.png";
 const String IMAGEN_RCP = "assets/rcp.png";
 
 //Quemaduras
-const String IMAGEN_PROFUNDIDAD_QUEMADURAS = "assets/Quemaduras/profundidadQuemaduras.png";
-const String IMAGEN_QUEMADURA_1 = "assets/Quemaduras/quemadura1.png";
-const String IMAGEN_QUEMADURA_ELECTRICA = "assets/Quemaduras/quemadurasElectricasEjemplo.png";
-const String IMAGEN_QUEMADURA_ELECTRICA_QUE_HACER = "assets/Quemaduras/quemadurasElectricasQueHacer.png";
-const String IMAGEN_QUEMADURA_QUE_HACER = "assets/Quemaduras/quemadurtasQueHacer.png";
-const String IMAGEN_QUEMADURA_QUE_NO_HACER = "assets/Quemaduras/quemadurtasQueNOHacer.png";
-const String IMAGEN_QUEMADURA_QUIMICA_QUE_HACER = "assets/Quemaduras/quemadurasQuimicasQueHacer.png";
-const String IMAGEN_QUEMADURA_SOLAR_PREVENIR = "assets/Quemaduras/quemadurasSolaresPrevenir.png";
+const String IMAGEN_PROFUNDIDAD_QUEMADURAS = "assets/profundidadQuemaduras.png";
+const String IMAGEN_QUEMADURA_1 = "assets/quemadura1.png";
+const String IMAGEN_QUEMADURA_ELECTRICA = "assets/quemadurasElectricasEjemplo.png";
+const String IMAGEN_QUEMADURA_ELECTRICA_QUE_HACER = "assets/quemadurasElectricasQueHacer.png";
+const String IMAGEN_QUEMADURA_QUE_HACER = "assets/quemadurtasQueHacer.png";
+const String IMAGEN_QUEMADURA_QUE_NO_HACER = "assets/quemadurtasQueNOHacer.png";
+const String IMAGEN_QUEMADURA_QUIMICA_QUE_HACER = "assets/quemadurasQuimicasQueHacer.png";
+const String IMAGEN_QUEMADURA_SOLAR_PREVENIR = "assets/quemadurasSolaresPrevenir.png";
 
 //Intoxicaciones
-const String IMAGEN_INTOXICACION_HUMO = "assets/Intoxicaciones/humo.png";
-const String IMAGEN_INTOXICACION_ALCOHOL_QUE_HACER = "assets/Intoxicaciones/intoxicacionAlcoholQueHacer.png";
-const String IMAGEN_INTOXICACION_PIEL_QUE_HACER = "assets/Intoxicaciones/intoxicacionesPielQueHacer.png";
-const String IMAGEN_INTOXICACION_VIA_CIRCULATORIA_QUE_HACER = "assets/Intoxicaciones/intoxicacionesViaCirculatoriaQueHacer.png";
-const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_HACER = "assets/Intoxicaciones/intoxicacionesViaDigestivaQueHacer.png";
-const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_NO_HACER = "assets/Intoxicaciones/intoxicacionesViaDigestivaQueNOHacer.png";
-const String IMAGEN_INTOXICACION_VIA_RESPIRATORIA_QUE_HACER = "assets/Intoxicaciones/intoxicacionesViaRespiratoriaQueHacer.png";
-const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/Intoxicaciones/monoxidoDeCarbono.png";
+const String IMAGEN_INTOXICACION_HUMO = "assets/humo.png";
+const String IMAGEN_INTOXICACION_ALCOHOL_QUE_HACER = "assets/intoxicacionAlcoholQueHacer.png";
+const String IMAGEN_INTOXICACION_PIEL_QUE_HACER = "assets/intoxicacionesPielQueHacer.png";
+const String IMAGEN_INTOXICACION_VIA_CIRCULATORIA_QUE_HACER = "assets/intoxicacionesViaCirculatoriaQueHacer.png";
+const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_HACER = "assets/intoxicacionesViaDigestivaQueHacer.png";
+const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_NO_HACER = "assets/intoxicacionesViaDigestivaQueNOHacer.png";
+const String IMAGEN_INTOXICACION_VIA_RESPIRATORIA_QUE_HACER = "assets/intoxicacionesViaRespiratoriaQueHacer.png";
+const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.png";
 
 
 //const String IMAGEN_ = "";
@@ -39,6 +41,8 @@ const String CORREO_ELECTRONICO = "Su correo electrónico: ";
 const String CONTRASENA = "Ingrese su contraseña: ";
 const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
 const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
+const String COLECCION_DETALLES = "detalles";
+const String DOCUMENTO_BD_QUEMADURAS = "quemaduras";
 
 const Color azulLogo = Color.fromARGB(1000, 0, 154, 208);
 
@@ -87,14 +91,17 @@ Widget estiloBotonGoogle(String texto){
       )
   );
 }
-
 Widget estiloExplicacionDetalles(String texto){
-  return Text(texto,
-    textAlign: TextAlign.justify,
-    style: TextStyle(
-      fontSize: 15,
+  return Padding(
+    padding: EdgeInsets.all(15.0),
+    child: Text(texto,
+      textAlign: TextAlign.justify,
+      style: TextStyle(
+        fontSize: 15,
+      ),
     ),
   );
+
 }
 
 Widget estiloTituloDetalles(String texto){
@@ -123,6 +130,62 @@ String getBaseDatos(String coleccion, String nombreCampo){
 
   return resultado;
 }
+/*
+Metodo para los detalles
+ */
+void getDetallesBaseDatos(String coleccion, String documento, String nombreCampo){
+  String valor = "";
+print("coleccion" + coleccion);
+  print("documento" + documento);
+  print("campo" + nombreCampo);
+
+  final doc = FirebaseFirestore.instance.collection(coleccion).doc(documento);
+  doc.get().then(
+        (DocumentSnapshot doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      print("dentro del for");
+
+      aa = data[nombreCampo];
+      print("valor " + valor);
+    },
+    onError: (e) => print("Error getting document: $e"),
+  );
+
+  //return valor;
+}
+
+Widget escribirPantalla(String coleccion, String documento, String nombreCampo){
+  //String textoBD = getDetallesBaseDatos(coleccion, documento, nombreCampo);
+
+  print("textodb essss;");
+  //print(textoBD);
+  return Text("textoBD",
+    textAlign: TextAlign.justify,
+    style: TextStyle(
+      fontSize: 15,
+    ),
+  );
+}
+
+
+Widget zoomImagen(String nombreImagen){
+  return InteractiveViewer(
+      child: Stack(
+        children: [
+          Hero(
+            tag: "",
+            child: Image.asset(nombreImagen, height: 180.0,),)
+        ],
+      )
+  );
+}
+
+
+
+
+
+
+
 
 
 

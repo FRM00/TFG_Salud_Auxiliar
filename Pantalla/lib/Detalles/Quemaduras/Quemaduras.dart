@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:prueba/main.dart';
 
 import '../../Constantes.dart';
 import 'QuemadurasElectricas.dart';
@@ -37,6 +38,8 @@ class Quemaduras extends StatefulWidget {
 }
 
 class _Quemaduras extends State<Quemaduras> {
+  String textoBD = "";
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -53,7 +56,9 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("¿En qué consiste?"),
             SizedBox(height: 5.0,),
 
-            estiloExplicacionDetalles("Explicacionfresrfgsdfgdfg"),
+            estiloExplicacionDetalles(aa),
+
+            escribirPantalla(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "consiste"),
             SizedBox(height: 5.0,),
 
             estiloTituloDetalles("Valoración de la Quemadura"),
@@ -63,13 +68,13 @@ class _Quemaduras extends State<Quemaduras> {
             SizedBox(height: 5.0,),
 
             estiloTituloDetalles("Clasificación de la Profundidad"),
-            Image.asset(IMAGEN_PROFUNDIDAD_QUEMADURAS, height: 180.0,),
+            zoomImagen(IMAGEN_PROFUNDIDAD_QUEMADURAS),
 
             estiloTituloDetalles("¿Qué Hacer?"),
-            Image.asset(IMAGEN_QUEMADURA_QUE_HACER, height: 180.0,),
+            zoomImagen(IMAGEN_QUEMADURA_QUE_HACER),
 
             estiloTituloDetalles("¿Qué NO Hacer?"),
-            Image.asset(IMAGEN_QUEMADURA_QUE_NO_HACER, height: 180.0,),
+            zoomImagen(IMAGEN_QUEMADURA_QUE_NO_HACER),
 
             botonTipoQuemadura(QUEMADURAS_ELECTRICAS),
             SizedBox(height: 5.0,),
@@ -110,9 +115,15 @@ class _Quemaduras extends State<Quemaduras> {
     );
   }
 
-
+void getCamposBD(){
 
 }
+
+
+
+
+
+}//final clase
 
 
 
