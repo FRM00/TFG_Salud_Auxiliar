@@ -8,6 +8,7 @@ import 'package:prueba/Detalles/Hemorragia.dart';
 import 'package:prueba/Detalles/Intoxicaciones.dart';
 import 'package:prueba/Detalles/Obstruccion.dart';
 import 'package:prueba/Detalles/ParadaCardio.dart';
+import '../Buscador.dart';
 import '../Constantes.dart';
 import '../Detalles/Quemaduras/Quemaduras.dart';
 import '../main.dart';
@@ -59,6 +60,17 @@ class _InicioState extends State<Inicio> {
       appBar: AppBar(
         title: Text(nombreUser()!),
         backgroundColor: Colors.blue,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                  context: context,
+                  delegate: CustomSearchClass()
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.only(top: 5), //para separar de arriba el margen.

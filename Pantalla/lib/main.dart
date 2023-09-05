@@ -335,6 +335,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 }
+/*
+        Interesante
 
+para obtener de firebase
+https://medium.com/comunidad-flutter/implementaci%C3%B3n-de-b%C3%BAsqueda-con-firebase-firestore-flutter-4e4461ec9d8c
+List<DocumentSnapshot> documentList;
+documentList = (await Firestore.instance
+        .collection("cases")
+        .document(await firestoreProvider.getUid())
+        .collection(caseCategory)
+        .where("caseNumber", isEqualTo: query)
+        .getDouments())
+        .documents;
 
-
+*/
