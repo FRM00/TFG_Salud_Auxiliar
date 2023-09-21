@@ -14,7 +14,7 @@ import 'Constantes.dart';
 import 'GoogleInicioSesion.dart';
 import 'firebase_options.dart';
 
-
+//para alinear algo a la izda : dentro de column --> crossAxisAligement: CrossAxisAligement.start
 String aa = "";
 
 main() {
