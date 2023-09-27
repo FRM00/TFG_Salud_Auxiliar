@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../Constantes.dart';
@@ -12,30 +13,41 @@ class QuemadurasElectricas extends StatefulWidget {
 }
 
 class _QuemadurasElectricas extends State<QuemadurasElectricas> {
+  final Stream<QuerySnapshot> doc = FirebaseFirestore.instance.
+  collection("cuestionario_quemaduras").snapshots();
+
   @override
   Widget build(BuildContext context) {
+
+
     return  Scaffold(
       appBar: AppBar(
         title: Text("Quemaduras Electricas"),
         backgroundColor: Colors.blue,
       ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 30.0,),
-              estiloTituloDetalles("¿Cómo se ha producido?"),
-              SizedBox(height: 5.0,),
-
-              estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
-              SizedBox(height: 5.0,),
-
-              estiloTituloDetalles("¿Qué hacer?"),
-              SizedBox(height: 5.0,),
-
-            ],
-          ),
-        ),
+          child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore
+                  .instance
+              .collection('cuestionario_quemaduras') //  Your desired collection name here
+              .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Text("Loading");
+          }
+          return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                document.data()! as Map<String, dynamic>;
+                return ListTile(
+                  title: Text(data['r2']), // 👈 Your valid data here
+                );
+              }).toList());
+        },
+      ),
       ),
     );
   }

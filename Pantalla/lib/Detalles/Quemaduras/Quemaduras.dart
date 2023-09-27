@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba/main.dart';
 
@@ -39,6 +40,8 @@ class Quemaduras extends StatefulWidget {
 
 class _Quemaduras extends State<Quemaduras> {
   String textoBD = "";
+  String q = "oo";
+  late Future<dynamic> dinamico;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,8 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("¿En qué consiste?"),
             SizedBox(height: 5.0,),
 
-            estiloExplicacionDetalles(aa),
+
+            estiloExplicacionDetalles(q),
 
             escribirPantalla(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "consiste"),
             SizedBox(height: 5.0,),
@@ -73,7 +77,7 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("¿Qué Hacer?"),
             zoomImagen(IMAGEN_QUEMADURA_QUE_HACER),
 
-            estiloTituloDetalles("¿Qué NO Hacer?"),
+            estiloTituloDetalles("aa"),
             zoomImagen(IMAGEN_QUEMADURA_QUE_NO_HACER),
 
             botonTipoQuemadura(QUEMADURAS_ELECTRICAS),
@@ -115,12 +119,45 @@ class _Quemaduras extends State<Quemaduras> {
     );
   }
 
-void getCamposBD(){
+  Future<void> getCamposBD() async {
+    final doc = await FirebaseFirestore.instance.
+    collection("cuestionario_quemaduras").doc("pregunta1");
+    String nada = "";
+    late Future<String> aux;
+
+    await doc.get().then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+
+        q = data["r4"];
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+   print("getCamposBDDDDD_______qqqqq");
+   print(nada);
+   //return aux;
 
 }
 
+/*
+  StreamBuilder<QuerySnapshot> getCamposBD() {
 
-
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.
+        collection("cuestionario_quemaduras").snapshots(),
+        builder: (context, snapshot){
+          List<Row> clientWidgets = [];
+          if(snapshot.hasData){
+            final clients = snapshot.data?.docs.reversed.toList();
+            print("nuevaFuncion");
+            print(clients);
+          }
+          return clientWidgets;
+        });
+    //print("nuevaFuncion");
+    //print(.toList().toString());
+  }*/
 
 
 }//final clase

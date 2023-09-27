@@ -15,7 +15,6 @@ import 'GoogleInicioSesion.dart';
 import 'firebase_options.dart';
 
 //para alinear algo a la izda : dentro de column --> crossAxisAligement: CrossAxisAligement.start
-String aa = "";
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = true;
   var duration = const Duration(seconds: 5);
   final firebas = FirebaseFirestore.instance;
+
   TextEditingController contrasena = TextEditingController();
   TextEditingController email = TextEditingController();
   final firebase = FirebaseFirestore.instance;

@@ -41,6 +41,7 @@ dependencies:
   google_sign_in:
   provider:
   firebase_database: ^10.1.1
+  group_radio_button: ^1.3.0
 
 dev_dependencies:
   flutter_test:

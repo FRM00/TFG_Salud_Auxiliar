@@ -51,7 +51,7 @@ class MenuInferior extends State<EstadoPaginas> {
             BottomNavigationBarItem(icon: Icon(Icons.account_box), label: "Cuenta"),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: "Comunidad"),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-            BottomNavigationBarItem(icon: Icon(Icons.map), label: "Localización"),
+            BottomNavigationBarItem(icon: Icon(Icons.map), label: "Cuestionarios"),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Ajustes"),
           ],
         ),

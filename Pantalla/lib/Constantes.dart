@@ -30,6 +30,7 @@ const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.pn
 
 
 //const String IMAGEN_ = "";
+String aa = "";
 
 
 const String NOMBRE_APP = "Salud Auxiliar";
@@ -91,7 +92,10 @@ Widget estiloBotonGoogle(String texto){
       )
   );
 }
-Widget estiloExplicacionDetalles(String texto){
+Widget estiloExplicacionDetalles(var variable){
+  String texto = variable.toString();
+  print(texto);
+
   return Padding(
     padding: EdgeInsets.all(15.0),
     child: Text(texto,
@@ -133,7 +137,7 @@ String getBaseDatos(String coleccion, String nombreCampo){
 /*
 Metodo para los detalles
  */
-void getDetallesBaseDatos(String coleccion, String documento, String nombreCampo){
+void getDetallesBaseDatos(String coleccion, String documento, String nombreCampo) async{
   String valor = "";
 print("coleccion" + coleccion);
   print("documento" + documento);

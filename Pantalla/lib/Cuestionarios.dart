@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_radio_button/group_radio_button.dart';
 
 import '../../Constantes.dart';
 
@@ -43,8 +44,19 @@ class _Cuestionarios extends State<Cuestionarios> {
     setState(() {});
   }
 
+  int _stackIndex = 0;
+
+  String _singleValue = "Text alignment right";
+  String _verticalGroupValue = "Pending";
+
+  final _status = ["Pending", "Released", "Blocked"];
+
+
   @override
   Widget build(BuildContext context) {
+    var val;
+    int iterador = 0;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Cuestionario de Quemaduras"),
@@ -65,6 +77,8 @@ class _Cuestionarios extends State<Cuestionarios> {
                             preguntas.length,
                                 (index) {
                               final pregunta = preguntas[index];
+                              iterador += 1;
+
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -73,6 +87,7 @@ class _Cuestionarios extends State<Cuestionarios> {
                                     height: 20,
                                   ),
                                   Wrap(
+                                    //https://pub.dev/packages/custom_radio_grouped_button/example
                                     children: List.generate(pregunta.opciones.length,
                                             (indexOpciones) {
                                           final opcion = pregunta.opciones[indexOpciones];
@@ -80,19 +95,24 @@ class _Cuestionarios extends State<Cuestionarios> {
 
                                           return Row(
                                             children: [
-                                              Checkbox(
-                                                value: seleccionada,
+                                              Radio(
+                                                value: iterador,
+                                                groupValue: val,
                                                 onChanged: (value) {
-                                                  opcionSeleccionada(index, indexOpciones);
+                                                  //   opcionSeleccionada(index, indexOpciones);
+                                                  setState(() {
+                                                    val = value.toString();
+                                                  });
                                                 },
                                               ),
                                               /*    Radio(value: seleccionada, groupValue: indexOpciones, onChanged: (value){
-                                                    opcionSeleccionada(index, indexOpciones);
-                                }),*/
+                                                                                                opcionSeleccionada(index, indexOpciones);
+                                                                            }),*/
                                               Text(pregunta.opciones[indexOpciones])
                                             ],
                                           );
                                         }),
+
                                   ),
                                 ],
                               );
@@ -106,13 +126,16 @@ class _Cuestionarios extends State<Cuestionarios> {
               estiloBoton("Enviar Respuestas")
 
             ],
-      )
-          // child: SingleChildScrollView(
+          )
+        // child: SingleChildScrollView(
 
-          //),
-          ),
+        //),
+      ),
     );
-  }
+  }// clase
+
+
+
 /*
   Widget listaPreguntas() {
     return ;
