@@ -24,10 +24,10 @@ class _QuemadurasQuimicas extends State<QuemadurasQuimicas> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 30.0,),
-              estiloTituloDetalles("¿Cómo se ha producido?"),
+             // estiloTituloDetalles("¿Cómo se ha producido?"),
               SizedBox(height: 5.0,),
 
-              estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
+             // estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
               SizedBox(height: 5.0,),
 
               estiloTituloDetalles("¿Qué hacer?"),

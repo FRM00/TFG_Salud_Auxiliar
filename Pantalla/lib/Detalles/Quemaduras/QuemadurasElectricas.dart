@@ -15,10 +15,11 @@ class QuemadurasElectricas extends StatefulWidget {
 class _QuemadurasElectricas extends State<QuemadurasElectricas> {
   final Stream<QuerySnapshot> doc = FirebaseFirestore.instance.
   collection("cuestionario_quemaduras").snapshots();
+  CollectionReference users = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
+
 
   @override
   Widget build(BuildContext context) {
-
 
     return  Scaffold(
       appBar: AppBar(
@@ -26,28 +27,7 @@ class _QuemadurasElectricas extends State<QuemadurasElectricas> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-          child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore
-                  .instance
-              .collection('cuestionario_quemaduras') //  Your desired collection name here
-              .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
-          }
-          return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                document.data()! as Map<String, dynamic>;
-                return ListTile(
-                  title: Text(data['r2']), // 👈 Your valid data here
-                );
-              }).toList());
-        },
-      ),
+          child: consulta(coleccionCuestionarios, "pregunta1", "pregunta")
       ),
     );
   }

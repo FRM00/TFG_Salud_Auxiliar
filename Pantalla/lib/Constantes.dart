@@ -31,6 +31,7 @@ const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.pn
 
 //const String IMAGEN_ = "";
 String aa = "";
+final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
 
 
 const String NOMBRE_APP = "Salud Auxiliar";
@@ -93,12 +94,14 @@ Widget estiloBotonGoogle(String texto){
   );
 }
 Widget estiloExplicacionDetalles(var variable){
-  String texto = variable.toString();
-  print(texto);
+  //String? texto = variable;
+  print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+  print(variable);
 
+  //consulta();
   return Padding(
     padding: EdgeInsets.all(15.0),
-    child: Text(texto,
+    child: Text(variable.toString()!,
       textAlign: TextAlign.justify,
       style: TextStyle(
         fontSize: 15,
@@ -183,10 +186,61 @@ Widget zoomImagen(String nombreImagen){
       )
   );
 }
+/*
+void consulta(){
+  DocumentReference documentReference = FirebaseFirestore.instance
+      .collection('cuestionario_quemaduras')
+      .doc("pregunta1");
 
+  FirebaseFirestore.instance.runTransaction((transaction) async {
+    // Get the document
+    DocumentSnapshot snapshot = await transaction.get(documentReference);
 
+    if (!snapshot.exists) {
+      throw Exception("User does not exist!");
+    }else{
+      print("nuevoooo");
+      print(snapshot.data());
+    }
 
+    // Update the follower count based on the current count
+    // Note: this could be done without a transaction
+    // by updating the population using FieldValue.increment()
 
+    //int newFollowerCount = snapshot.data()?['cuestionario_quemaduras'] + 1;
+
+    // Perform an update on the document
+    //transaction.update(documentReference, {'followers': newFollowerCount});
+
+    // Return the new count
+    // return newFollowerCount;
+  })
+      .then((value) => print("Follower count updated to $value"))
+      .catchError((error) => print("Failed to update user followers: $error"));
+}
+*/
+FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, String documento, String campo) {
+
+  return FutureBuilder<DocumentSnapshot>(
+    future: coleccion.doc(documento).get(),
+    builder:
+        (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+      if (snapshot.hasError) {
+        return Text("Something went wrong");
+      }
+      if (snapshot.hasData && !snapshot.data!.exists) {
+        return Text("Document does not exist");
+      }
+
+      if (snapshot.connectionState == ConnectionState.done) {
+        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+        return Text("${data[campo]}");
+      }
+
+      return Text("loading");
+    },
+  );
+}
 
 
 

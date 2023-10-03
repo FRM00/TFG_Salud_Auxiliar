@@ -27,7 +27,7 @@ class _QuemadurasSolares extends State<QuemadurasSolares> {
               estiloTituloDetalles("¿Cómo se ha producido?"),
               SizedBox(height: 5.0,),
 
-              estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
+           //   estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
               SizedBox(height: 5.0,),
 
               estiloTituloDetalles("¿Cómo Prevenir?"),

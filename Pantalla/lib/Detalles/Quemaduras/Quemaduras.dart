@@ -60,7 +60,7 @@ class _Quemaduras extends State<Quemaduras> {
             SizedBox(height: 5.0,),
 
 
-            estiloExplicacionDetalles(q),
+          //  estiloExplicacionDetalles(q),
 
             escribirPantalla(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "consiste"),
             SizedBox(height: 5.0,),
@@ -68,7 +68,7 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("Valoración de la Quemadura"),
             SizedBox(height: 5.0,),
 
-            estiloExplicacionDetalles("Explicacion"),
+            estiloExplicacionDetalles(consulta(coleccionCuestionarios, "pregunta1", "r2")),
             SizedBox(height: 5.0,),
 
             estiloTituloDetalles("Clasificación de la Profundidad"),
@@ -119,24 +119,25 @@ class _Quemaduras extends State<Quemaduras> {
     );
   }
 
-  Future<void> getCamposBD() async {
+  Future<Text> getCamposBD() async {
     final doc = await FirebaseFirestore.instance.
     collection("cuestionario_quemaduras").doc("pregunta1");
     String nada = "";
-    late Future<String> aux;
+    late Map<String, dynamic> aux;
 
     await doc.get().then(
           (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-
+        //aux = "{${data['r2']}" as Map<String, dynamic>;
+        aux = data;
         q = data["r4"];
       },
       onError: (e) => print("Error getting document: $e"),
     );
 
    print("getCamposBDDDDD_______qqqqq");
-   print(nada);
-   //return aux;
+   print(aux);
+   return Text("{${aux['r2']}");
 
 }
 
@@ -158,6 +159,9 @@ class _Quemaduras extends State<Quemaduras> {
     //print("nuevaFuncion");
     //print(.toList().toString());
   }*/
+
+
+
 
 
 }//final clase
