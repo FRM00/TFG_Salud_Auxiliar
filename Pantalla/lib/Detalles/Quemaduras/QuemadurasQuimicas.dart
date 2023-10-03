@@ -30,7 +30,7 @@ class _QuemadurasQuimicas extends State<QuemadurasQuimicas> {
              // estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
               SizedBox(height: 5.0,),
 
-              estiloTituloDetalles("¿Qué hacer?"),
+              estiloTituloDetalles(getDocumentoBD("cuestionario_quemaduras","pregunta1") as String),
               SizedBox(height: 5.0,),
 
 

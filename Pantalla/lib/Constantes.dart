@@ -32,6 +32,7 @@ const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.pn
 //const String IMAGEN_ = "";
 String aa = "";
 final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
+late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
 
 
 const String NOMBRE_APP = "Salud Auxiliar";
@@ -134,31 +135,33 @@ String getBaseDatos(String coleccion, String nombreCampo){
         resultado = doc[nombreCampo];
       }),
   });
+    print("then.printtttttttttt");
+  coleccionUsuarios.get().then(print);
+  print("DESPUES then.printtttttttttt");
 
   return resultado;
 }
 /*
-Metodo para los detalles
+Metodo para guardar en documentoBD el docuemnto como lista
  */
-void getDetallesBaseDatos(String coleccion, String documento, String nombreCampo) async{
-  String valor = "";
-print("coleccion" + coleccion);
-  print("documento" + documento);
-  print("campo" + nombreCampo);
+getDocumentoBD(String coleccion, String documento) async{
 
   final doc = FirebaseFirestore.instance.collection(coleccion).doc(documento);
   doc.get().then(
         (DocumentSnapshot doc) {
       final data = doc.data() as Map<String, dynamic>;
       print("dentro del for");
+      documentoBD = data;
 
-      aa = data[nombreCampo];
-      print("valor " + valor);
-    },
+      /*
+      data.forEach((key, value) {
+        print(key + " " + value);
+      });*/
+
+      //print(documentoBD.toString());
+        },
     onError: (e) => print("Error getting document: $e"),
   );
-
-  //return valor;
 }
 
 Widget escribirPantalla(String coleccion, String documento, String nombreCampo){
@@ -186,8 +189,8 @@ Widget zoomImagen(String nombreImagen){
       )
   );
 }
-/*
-void consulta(){
+
+void consultaLista(){
   DocumentReference documentReference = FirebaseFirestore.instance
       .collection('cuestionario_quemaduras')
       .doc("pregunta1");
@@ -218,8 +221,10 @@ void consulta(){
       .then((value) => print("Follower count updated to $value"))
       .catchError((error) => print("Failed to update user followers: $error"));
 }
-*/
-FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, String documento, String campo) {
+
+FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valorDocumento, int valorCampo) {
+  String campo = cambiarValorCampo(valorCampo);
+  String documento = cambiarValorDocumento(valorDocumento);
 
   return FutureBuilder<DocumentSnapshot>(
     future: coleccion.doc(documento).get(),
@@ -234,15 +239,50 @@ FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, String d
 
       if (snapshot.connectionState == ConnectionState.done) {
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+
         return Text("${data[campo]}");
       }
 
-      return Text("loading");
+      return Text("");
     },
   );
 }
 
+String cambiarValorCampo(int valorCampo) {
+  String campo = "";
 
+  if(valorCampo == 0){
+    campo = "pregunta";
+  }else if(valorCampo == 1){
+    campo = "r1";
+  }else if(valorCampo == 2){
+    campo = "r2";
+  }else if(valorCampo == 3){
+    campo = "r3";
+  }else if(valorCampo == 4){
+    campo = "r4";
+  }else if(valorCampo == 5){
+    campo = "respuesta";
+  }
+  return campo;
+}
+
+String cambiarValorDocumento(int valorCampo) {
+  String campo = "";
+
+  if(valorCampo == 0){
+    campo = "pregunta1";
+  }else if(valorCampo == 1){
+    campo = "pregunta2";
+  }else if(valorCampo == 2){
+    campo = "pregunta3";
+  }else if(valorCampo == 3){
+    campo = "pregunta4";
+  }else if(valorCampo == 4){
+    campo = "pregunta5";
+  }
+  return campo;
+}
 
 
 

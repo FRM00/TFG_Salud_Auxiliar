@@ -19,6 +19,7 @@ import 'firebase_options.dart';
 main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value){
+    getDocumentoBD("cuestionario_quemaduras", "pregunta1");
     runApp(MyApp());
   });
 }
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    getDetallesBaseDatos("detalles","quemaduras", "consiste");
+    //getDocumentoBD("detalles","quemaduras", "consiste");
     if(comprobarLogin()){
       Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
       return WillPopScope( //esta clase captura el boton para ir atras. Si es false lo ignora

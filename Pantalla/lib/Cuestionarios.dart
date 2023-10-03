@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
@@ -44,8 +45,6 @@ class _Cuestionarios extends State<Cuestionarios> {
     setState(() {});
   }
 
-  int _stackIndex = 0;
-
   String _singleValue = "Text alignment right";
   String _verticalGroupValue = "Pending";
 
@@ -54,9 +53,6 @@ class _Cuestionarios extends State<Cuestionarios> {
 
   @override
   Widget build(BuildContext context) {
-    var val;
-    int iterador = 0;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Cuestionario de Quemaduras"),
@@ -73,51 +69,16 @@ class _Cuestionarios extends State<Cuestionarios> {
                       Container(
                         margin: EdgeInsets.only(top: 15, left: 15, right: 15),
                         child: Column(
-                          children: List.generate(
-                            preguntas.length,
-                                (index) {
-                              final pregunta = preguntas[index];
-                              iterador += 1;
+                          children: <Widget>[
+                            //iterDocumento(coleccionCuestionarios, "pregunta1", "campo"),
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(pregunta.enunciado),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Wrap(
-                                    //https://pub.dev/packages/custom_radio_grouped_button/example
-                                    children: List.generate(pregunta.opciones.length,
-                                            (indexOpciones) {
-                                          final opcion = pregunta.opciones[indexOpciones];
-                                          final seleccionada = pregunta.respuestas.contains(opcion);
-
-                                          return Row(
-                                            children: [
-                                              Radio(
-                                                value: iterador,
-                                                groupValue: val,
-                                                onChanged: (value) {
-                                                  //   opcionSeleccionada(index, indexOpciones);
-                                                  setState(() {
-                                                    val = value.toString();
-                                                  });
-                                                },
-                                              ),
-                                              /*    Radio(value: seleccionada, groupValue: indexOpciones, onChanged: (value){
-                                                                                                opcionSeleccionada(index, indexOpciones);
-                                                                            }),*/
-                                              Text(pregunta.opciones[indexOpciones])
-                                            ],
-                                          );
-                                        }),
-
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
+                            for (int i = 0; i <= 4; i++)
+                              sdfsadfg
+                              Text(documentoBD.values.toString() as String),
+                              //consulta(coleccionCuestionarios, i, 0),
+                              for (int j = 1; j <= 4; j++)
+                                radioCuestionario(0, j),
+                          ]
                         ),
                       ),
                     ]),
@@ -140,7 +101,69 @@ class _Cuestionarios extends State<Cuestionarios> {
   Widget listaPreguntas() {
     return ;
   }*/
+Widget radioCuestionario(int documento, int campo){
 
+    return ListTile(
+      title: consulta(coleccionCuestionarios, documento, campo),
+      leading: Radio(
+        value: campo,
+        groupValue: _value,
+        //activeColor: Color(0xFF6200EE),
+        onChanged: (value) {
+          setState(() {
+            _value = value!;
+          });
+        },
+      ),
+    );
+}
+
+  void cuestionarioEntero(){
+    for (int i = 0; i <= 4; i++){
+      consulta(coleccionCuestionarios, i, 0);
+
+      for (int j = 1; j <= 4; j++){
+        radioCuestionario(0, j);
+      }
+    }
+  }
+  /*
+metodo para iterar un documento
+ */
+  FutureBuilder<DocumentSnapshot> iterDocumento(CollectionReference coleccion, String documento, String campo) {
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: coleccion.doc(documento).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return Text("Document does not exist");
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+          data.forEach((key, value) {
+            print("kvkvkvkvkvkvkvkvkvkvkvvvvvvvv");
+            Text(key.toString());
+            Text(value.toString());
+
+            for (int i = 0; i <= 4; i++){
+              if(key == "pregunta"){
+                Text(value);
+              }
+              /*for (int j = 1; j <= 4; j++){
+                radioCuestionario(0, j);
+              }*/
+            }
+          });
+          //return Text("${data[campo]}");
+        }
+        return Text("");
+      },
+    );
+  }
 
 }//la clase
 
