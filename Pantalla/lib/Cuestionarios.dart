@@ -51,8 +51,22 @@ class _Cuestionarios extends State<Cuestionarios> {
   final _status = ["Pending", "Released", "Blocked"];
 
 
+  void initState(){
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+    //preguntas2.add(value);
+
+
+    print("en cuestionarios5555555555555555");
+    print(preguntas2.length);
+    print(preguntas2[0].enunciado);
+    print(preguntas2[0].opciones.toString());
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Cuestionario de Quemaduras"),
@@ -61,6 +75,7 @@ class _Cuestionarios extends State<Cuestionarios> {
       body: Container(
           child: Column(
             children: <Widget>[
+
               Expanded(
                   child: SizedBox(
                     height: 5.0,
@@ -69,16 +84,46 @@ class _Cuestionarios extends State<Cuestionarios> {
                       Container(
                         margin: EdgeInsets.only(top: 15, left: 15, right: 15),
                         child: Column(
-                          children: <Widget>[
-                            //iterDocumento(coleccionCuestionarios, "pregunta1", "campo"),
+                          children: List.generate(
+                            preguntas2.length,
+                                (index) {
+                              final pregunta = preguntas2[index];
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(pregunta.enunciado),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Wrap(
+                                    spacing: 5.0,
+                                    runSpacing: 5.0,
+                                    direction: Axis.vertical, // main axis (rows or columns)
+                                    children: List.generate(pregunta.opciones.length,
+                                            (indexOpciones) {
+                                          final opcion = pregunta.opciones[indexOpciones];
+                                          final seleccionada = pregunta.respuestas.contains(opcion);
 
-                            for (int i = 0; i <= 4; i++)
-                              sdfsadfg
-                              Text(documentoBD.values.toString() as String),
-                              //consulta(coleccionCuestionarios, i, 0),
-                              for (int j = 1; j <= 4; j++)
-                                radioCuestionario(0, j),
-                          ]
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                value: seleccionada,
+                                                onChanged: (value) {
+                                                  opcionSeleccionada(index, indexOpciones);
+                                                },
+                                              ),
+                                              /*    Radio(value: seleccionada, groupValue: indexOpciones, onChanged: (value){
+                                                    opcionSeleccionada(index, indexOpciones);
+                                }),*/
+                                              Text(pregunta.opciones[indexOpciones])
+                                            ],
+                                          );
+                                        }),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ]),
@@ -93,7 +138,12 @@ class _Cuestionarios extends State<Cuestionarios> {
         //),
       ),
     );
-  }// clase
+  }
+/*
+  Widget listaPreguntas() {
+    return ;
+  }*/
+
 
 
 
@@ -165,6 +215,12 @@ metodo para iterar un documento
     );
   }
 
+
+
+
+
+
+
 }//la clase
 
 
@@ -192,4 +248,10 @@ class Pregunta {
       respuestas: respuestas,
     );
   }
-}
+
+
+
+
+
+
+}//clase pregunta

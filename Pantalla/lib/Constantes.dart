@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'Cuestionarios.dart';
 import 'main.dart';
 
 //carpeta raiz
@@ -33,6 +34,9 @@ const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.pn
 String aa = "";
 final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
 late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
+var pruebaJson;
+final List<Pregunta> preguntas2 = [];
+
 
 
 const String NOMBRE_APP = "Salud Auxiliar";
@@ -152,13 +156,6 @@ getDocumentoBD(String coleccion, String documento) async{
       final data = doc.data() as Map<String, dynamic>;
       print("dentro del for");
       documentoBD = data;
-
-      /*
-      data.forEach((key, value) {
-        print(key + " " + value);
-      });*/
-
-      //print(documentoBD.toString());
         },
     onError: (e) => print("Error getting document: $e"),
   );
@@ -222,9 +219,35 @@ void consultaLista(){
       .catchError((error) => print("Failed to update user followers: $error"));
 }
 
+
+FutureBuilder<DocumentSnapshot> llenarListaPreguntas(CollectionReference coleccion, int valorDocumento) {
+  String documento = cambiarValorDocumento(valorDocumento);
+
+  return FutureBuilder<DocumentSnapshot>(
+    future: coleccion.doc(documento).get(),
+    builder:
+        (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+
+        data.forEach((key, value) {
+          revisar lo que se esta metiendo. Me dice que preguntas2 tiene length=30
+          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r1"],data["r1"],data["r1"]]));
+        });
+        print("data.llenar nuevi temaroopddddddddd");
+        print(preguntas2[0].enunciado);
+        return Text("");
+    },
+  );
+}
 FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valorDocumento, int valorCampo) {
   String campo = cambiarValorCampo(valorCampo);
   String documento = cambiarValorDocumento(valorDocumento);
+
+  //llenamos la lista preguntas2
+  print("data.llenar nppppppppppppppppppppppp");
+
+  //print(preguntas2[0].enunciado);
+
 
   return FutureBuilder<DocumentSnapshot>(
     future: coleccion.doc(documento).get(),
@@ -242,7 +265,6 @@ FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valo
 
         return Text("${data[campo]}");
       }
-
       return Text("");
     },
   );
@@ -283,6 +305,7 @@ String cambiarValorDocumento(int valorCampo) {
   }
   return campo;
 }
+
 
 
 

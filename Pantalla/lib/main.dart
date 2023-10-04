@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //getDocumentoBD("detalles","quemaduras", "consiste");
+
     if(comprobarLogin()){
       Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
       return WillPopScope( //esta clase captura el boton para ir atras. Si es false lo ignora
@@ -226,6 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return MaterialButton(
               child: estiloBotonGoogle(TEXTO_BOTON_GOOGLE),
               onPressed: () async{
+
                 await GoogleInicioSesion().iniciarSesionGoogle();
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
 

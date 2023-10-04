@@ -27,7 +27,19 @@ class _QuemadurasElectricas extends State<QuemadurasElectricas> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-          child: consulta(coleccionCuestionarios, 0, 0)
+
+          child: Column(
+            children: [
+              llenarListaPreguntas(coleccionCuestionarios, 0),
+              llenarListaPreguntas(coleccionCuestionarios, 1),
+              llenarListaPreguntas(coleccionCuestionarios, 2),
+              llenarListaPreguntas(coleccionCuestionarios, 3),
+              llenarListaPreguntas(coleccionCuestionarios, 4),
+
+              consulta(coleccionCuestionarios, 0, 0)
+            ],
+          )
+
       ),
     );
   }
