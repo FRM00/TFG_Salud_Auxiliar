@@ -12,7 +12,7 @@ class Cuestionarios extends StatefulWidget {
 }
 
 class _Cuestionarios extends State<Cuestionarios> {
-  final List<Pregunta> preguntas = [
+  /*final List<Pregunta> preguntas = [
     Pregunta(
         enunciado: "enunciado1",
         opciones: ["opcion1", "opcion2", "opcion3", "opcion4"]),
@@ -25,15 +25,21 @@ class _Cuestionarios extends State<Cuestionarios> {
     Pregunta(
         enunciado: "enunciado4",
         opciones: ["opcion11", "opcion22", "opcion33", "opcion44"])
-  ];
+  ];*/
   int _value = 1;
 
   void opcionSeleccionada(int indexPregunta, int indexOpcion) {
-    final Pregunta pregunta = preguntas[indexPregunta];
+    final Pregunta pregunta = preguntas2[indexPregunta];
     final String opcion = pregunta.opciones[indexOpcion];
     final bool seleccionada = pregunta.respuestas.contains(opcion);
 
     final respuestas = List<String>.from(pregunta.respuestas);
+
+    print("\n\n\nen OpcionSeleccionada");
+    print(pregunta.respuestas.toString());
+    print("Seleccionada " + seleccionada.toString());
+    //print("\n-opciooon  " + opcion.toString());
+
 
     if (seleccionada) {
       respuestas.remove(opcion);
@@ -41,31 +47,32 @@ class _Cuestionarios extends State<Cuestionarios> {
       respuestas.add(opcion);
     }
 
-    preguntas[indexPregunta] = pregunta.actualizarPregunta(respuestas);
+    preguntas2[indexPregunta] = pregunta.actualizarPregunta(respuestas);
+/*
+    print("debajoooooooooooooyuyyyy");
+    print("indexPreguntas " + indexPregunta.toString());
+    print("preguntas[indexpreguntas]" + preguntas[indexPregunta].toString());*/
     setState(() {});
   }
+  var selectedRadio;
 
-  String _singleValue = "Text alignment right";
-  String _verticalGroupValue = "Pending";
-
-  final _status = ["Pending", "Released", "Blocked"];
-
-
+  @override
   void initState(){
     super.initState();
+    selectedRadio = 0;
   }
 
+  setSelectedRadio(var val){
+    setState(() {
+      selectedRadio = val;
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
     //preguntas2.add(value);
 
-
-    print("en cuestionarios5555555555555555");
-    print(preguntas2.length);
-    print(preguntas2[0].enunciado);
-    print(preguntas2[0].opciones.toString());
 
     return Scaffold(
       appBar: AppBar(
@@ -81,10 +88,13 @@ class _Cuestionarios extends State<Cuestionarios> {
                     height: 5.0,
                     child:
                     ListView(children: [
+
                       Container(
                         margin: EdgeInsets.only(top: 15, left: 15, right: 15),
                         child: Column(
-                          children: List.generate(
+                          children:
+
+                          List.generate(
                             preguntas2.length,
                                 (index) {
                               final pregunta = preguntas2[index];
@@ -101,20 +111,29 @@ class _Cuestionarios extends State<Cuestionarios> {
                                     direction: Axis.vertical, // main axis (rows or columns)
                                     children: List.generate(pregunta.opciones.length,
                                             (indexOpciones) {
-                                          final opcion = pregunta.opciones[indexOpciones];
-                                          final seleccionada = pregunta.respuestas.contains(opcion);
+                                          final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
+                                          Object seleccionada = pregunta.respuestas.contains(opcion);
+
+                                          print("seleccionada en el lio " + seleccionada.toString());
+                                          print("respuestas en el lio " + pregunta.respuestas.toString());
+                                          print("opcion en el lio " + opcion.toString());
 
                                           return Row(
                                             children: [
-                                              Checkbox(
-                                                value: seleccionada,
-                                                onChanged: (value) {
-                                                  opcionSeleccionada(index, indexOpciones);
-                                                },
-                                              ),
-                                              /*    Radio(value: seleccionada, groupValue: indexOpciones, onChanged: (value){
-                                                    opcionSeleccionada(index, indexOpciones);
-                                }),*/
+                                                  Radio(
+                                                      value: pregunta.opciones[indexOpciones],
+                                                      groupValue: selectedRadio,
+
+                                                      onChanged: (value){
+                                                        setState(() {
+                                                          print("seleccionada en setState " + seleccionada.toString());
+                                                          setSelectedRadio(value);
+                                                         // pregunta.opciones[indexOpciones] = value!;
+                                                        });
+
+                                                        opcionSeleccionada(index, indexOpciones);
+                                                  }),
+                                              //radioCuestionario(index, indexOpciones),
                                               Text(pregunta.opciones[indexOpciones])
                                             ],
                                           );

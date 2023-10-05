@@ -229,12 +229,8 @@ FutureBuilder<DocumentSnapshot> llenarListaPreguntas(CollectionReference colecci
         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
 
-        data.forEach((key, value) {
-          revisar lo que se esta metiendo. Me dice que preguntas2 tiene length=30
-          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r1"],data["r1"],data["r1"]]));
-        });
-        print("data.llenar nuevi temaroopddddddddd");
-        print(preguntas2[0].enunciado);
+        preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""]));
+
         return Text("");
     },
   );
