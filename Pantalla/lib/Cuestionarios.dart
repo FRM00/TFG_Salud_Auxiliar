@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_radio_button/group_radio_button.dart';
+import 'package:prueba/ResultadosCuestionarios.dart';
 
 import '../../Constantes.dart';
 
@@ -85,15 +86,13 @@ class _Cuestionarios extends State<Cuestionarios> {
 
               Expanded(
                   child: SizedBox(
-                    height: 5.0,
+                    height: 25.0,
                     child:
                     ListView(children: [
-
                       Container(
-                        margin: EdgeInsets.only(top: 15, left: 15, right: 15),
+                        margin: EdgeInsets.only(top: 25, left: 15, right: 15),
                         child: Column(
                           children:
-
                           List.generate(
                             preguntas2.length,
                                 (index) {
@@ -101,7 +100,10 @@ class _Cuestionarios extends State<Cuestionarios> {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(pregunta.enunciado),
+                                  Text(pregunta.enunciado,
+                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
+                                  ),
                                   SizedBox(
                                     height: 20,
                                   ),
@@ -112,17 +114,18 @@ class _Cuestionarios extends State<Cuestionarios> {
                                     children: List.generate(pregunta.opciones.length,
                                             (indexOpciones) {
                                           final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
-                                          Object seleccionada = pregunta.respuestas.contains(opcion);
+                                          bool seleccionada = pregunta.respuestas.contains(opcion);
 
                                           print("seleccionada en el lio " + seleccionada.toString());
                                           print("respuestas en el lio " + pregunta.respuestas.toString());
                                           print("opcion en el lio " + opcion.toString());
 
                                           return Row(
+
                                             children: [
-                                                  Radio(
-                                                      value: pregunta.opciones[indexOpciones],
-                                                      groupValue: selectedRadio,
+                                                  Checkbox(
+                                                      value: seleccionada,
+                                                      //groupValue: selectedRadio,
 
                                                       onChanged: (value){
                                                         setState(() {
@@ -134,7 +137,15 @@ class _Cuestionarios extends State<Cuestionarios> {
                                                         opcionSeleccionada(index, indexOpciones);
                                                   }),
                                               //radioCuestionario(index, indexOpciones),
-                                              Text(pregunta.opciones[indexOpciones])
+                                              Container(
+                                                width: 300,
+                                                height: 80,
+                                                child: Text(pregunta.opciones[indexOpciones],
+                                                  style: TextStyle(fontSize: 18),
+                                                  overflow: TextOverflow.fade,
+                                                ),
+                                              ),
+                                              SizedBox(height: 50,),
                                             ],
                                           );
                                         }),
@@ -148,7 +159,7 @@ class _Cuestionarios extends State<Cuestionarios> {
                     ]),
                   )
               ),
-              estiloBoton("Enviar Respuestas")
+              botonEnviarRespuesta("Enviar Respuestas")
 
             ],
           )
@@ -164,7 +175,15 @@ class _Cuestionarios extends State<Cuestionarios> {
   }*/
 
 
+  Widget botonEnviarRespuesta(String texto){
+    return MaterialButton(
+        child: estiloBoton(texto),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("", "")));
 
+        }
+    );
+  }
 
 /*
   Widget listaPreguntas() {
