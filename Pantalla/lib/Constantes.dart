@@ -219,8 +219,8 @@ void consultaLista(){
       .catchError((error) => print("Failed to update user followers: $error"));
 }
 
-
-FutureBuilder<DocumentSnapshot> llenarListaPreguntas(CollectionReference coleccion, int valorDocumento) {
+/*
+llenarListaPreguntas(CollectionReference coleccion, int valorDocumento) {
   String documento = cambiarValorDocumento(valorDocumento);
 
   return FutureBuilder<DocumentSnapshot>(
@@ -231,10 +231,10 @@ FutureBuilder<DocumentSnapshot> llenarListaPreguntas(CollectionReference colecci
 
         preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""]));
 
-        return Text("");
+        return Container();
     },
   );
-}
+}*/
 FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valorDocumento, int valorCampo) {
   String campo = cambiarValorCampo(valorCampo);
   String documento = cambiarValorDocumento(valorDocumento);

@@ -43,14 +43,14 @@ class Localizacion extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Color.fromARGB(1000, 0, 154, 208),
+
                   ),
                   child: GestureDetector(
                     onTap: (){
                       if (index == 0){ //quemaduras
-                        print("en quemaduras");
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Quemaduras", "foto")));
                       }else if (index == 1){ //intoxicaciones
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("intoxicaciones", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Intoxicaciones", "foto")));
                       }else if (index == 2){ //convulsiones
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("convulsiones", "foto")));
                       }else if (index == 3){ //parada cardiorespiratoria
@@ -72,6 +72,7 @@ class Localizacion extends StatelessWidget {
               );
             }
         ),
+
       ),
     );
   }

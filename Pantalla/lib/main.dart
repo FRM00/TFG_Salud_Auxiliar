@@ -11,19 +11,38 @@ import 'BotonNavigation_Bar/Cuenta.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'BotonNavigation_Bar/MenuInferior.dart';
 import 'Constantes.dart';
+import 'Cuestionarios.dart';
 import 'GoogleInicioSesion.dart';
 import 'firebase_options.dart';
 
 //para alinear algo a la izda : dentro de column --> crossAxisAligement: CrossAxisAligement.start
 
 main() {
+  //final List<Pregunta> preguntas2 = [];
+
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value){
-    getDocumentoBD("cuestionario_quemaduras", "pregunta1");
+
+    llenarPreguntas2(0);
+    llenarPreguntas2(1);
+    llenarPreguntas2(2);
+    llenarPreguntas2(3);
+    llenarPreguntas2(4);
+
     runApp(MyApp());
   });
 }
 
+void llenarPreguntas2(int valorDocumento){
+  String documento = cambiarValorDocumento(valorDocumento);
+
+  final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
+  coleccionCuestionarios.doc(documento).get().then(
+          (DocumentSnapshot doc){
+        final data = doc.data() as Map<String, dynamic>;
+          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""]));
+      });
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -81,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(INICIAR_SESION),
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
           backgroundColor: Colors.blue,
+
         ),
         body: Center(
           child: Column(
@@ -95,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
               textoRegistrarse(),
               botonIniciarSesion("Iniciar Sesión"),
               iniciarSesionConGoogle(),
+
             ],
           ),
         ),
@@ -227,7 +248,6 @@ class _MyHomePageState extends State<MyHomePage> {
           return MaterialButton(
               child: estiloBotonGoogle(TEXTO_BOTON_GOOGLE),
               onPressed: () async{
-
                 await GoogleInicioSesion().iniciarSesionGoogle();
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
 

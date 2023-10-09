@@ -13,21 +13,7 @@ class Cuestionarios extends StatefulWidget {
 }
 
 class _Cuestionarios extends State<Cuestionarios> {
-  /*final List<Pregunta> preguntas = [
-    Pregunta(
-        enunciado: "enunciado1",
-        opciones: ["opcion1", "opcion2", "opcion3", "opcion4"]),
-    Pregunta(
-        enunciado: "enunciado2",
-        opciones: ["opcion11", "opcion22", "opcion33", "opcion44"]),
-    Pregunta(
-        enunciado: "enunciado3",
-        opciones: ["opcion1", "opcion2", "opcion3", "opcion4"]),
-    Pregunta(
-        enunciado: "enunciado4",
-        opciones: ["opcion11", "opcion22", "opcion33", "opcion44"])
-  ];*/
-  int _value = 1;
+
 
   void opcionSeleccionada(int indexPregunta, int indexOpcion) {
     final Pregunta pregunta = preguntas2[indexPregunta];
@@ -36,12 +22,13 @@ class _Cuestionarios extends State<Cuestionarios> {
 
     final respuestas = List<String>.from(pregunta.respuestas);
 
-    print("\n\n\nen OpcionSeleccionada");
+    print("en OpcionSeleccionada");
     print(pregunta.respuestas.toString());
     print("Seleccionada " + seleccionada.toString());
     //print("\n-opciooon  " + opcion.toString());
 
-
+    https://www.youtube.com/watch?v=9EGNR8mAjnc&t=2s
+    seguir por el enlace de arriba
     if (seleccionada) {
       respuestas.remove(opcion);
     } else {
@@ -74,7 +61,6 @@ class _Cuestionarios extends State<Cuestionarios> {
   Widget build(BuildContext context) {
     //preguntas2.add(value);
 
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Cuestionario de Quemaduras"),
@@ -83,7 +69,6 @@ class _Cuestionarios extends State<Cuestionarios> {
       body: Container(
           child: Column(
             children: <Widget>[
-
               Expanded(
                   child: SizedBox(
                     height: 25.0,
@@ -116,25 +101,24 @@ class _Cuestionarios extends State<Cuestionarios> {
                                           final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
                                           bool seleccionada = pregunta.respuestas.contains(opcion);
 
-                                          print("seleccionada en el lio " + seleccionada.toString());
-                                          print("respuestas en el lio " + pregunta.respuestas.toString());
-                                          print("opcion en el lio " + opcion.toString());
-
-                                          return Row(
-
+                                              return Row(
                                             children: [
                                                   Checkbox(
                                                       value: seleccionada,
+
                                                       //groupValue: selectedRadio,
+
 
                                                       onChanged: (value){
                                                         setState(() {
+                                                          print("VALUE " + value.toString());
+
                                                           print("seleccionada en setState " + seleccionada.toString());
                                                           setSelectedRadio(value);
-                                                         // pregunta.opciones[indexOpciones] = value!;
-                                                        });
+                                                          opcionSeleccionada(index, indexOpciones);
 
-                                                        opcionSeleccionada(index, indexOpciones);
+                                                          // pregunta.opciones[indexOpciones] = value!;
+                                                        });
                                                   }),
                                               //radioCuestionario(index, indexOpciones),
                                               Container(
@@ -179,6 +163,7 @@ class _Cuestionarios extends State<Cuestionarios> {
     return MaterialButton(
         child: estiloBoton(texto),
         onPressed: () {
+
           Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("", "")));
 
         }
@@ -189,6 +174,7 @@ class _Cuestionarios extends State<Cuestionarios> {
   Widget listaPreguntas() {
     return ;
   }*/
+  /*
 Widget radioCuestionario(int documento, int campo){
 
     return ListTile(
@@ -204,8 +190,8 @@ Widget radioCuestionario(int documento, int campo){
         },
       ),
     );
-}
-
+}*/
+/*
   void cuestionarioEntero(){
     for (int i = 0; i <= 4; i++){
       consulta(coleccionCuestionarios, i, 0);
@@ -214,7 +200,7 @@ Widget radioCuestionario(int documento, int campo){
         radioCuestionario(0, j);
       }
     }
-  }
+  }*/
   /*
 metodo para iterar un documento
  */

@@ -30,11 +30,6 @@ class _QuemadurasElectricas extends State<QuemadurasElectricas> {
 
           child: Column(
             children: [
-              llenarListaPreguntas(coleccionCuestionarios, 0),
-              llenarListaPreguntas(coleccionCuestionarios, 1),
-              llenarListaPreguntas(coleccionCuestionarios, 2),
-              llenarListaPreguntas(coleccionCuestionarios, 3),
-              llenarListaPreguntas(coleccionCuestionarios, 4),
 
               consulta(coleccionCuestionarios, 0, 0)
             ],

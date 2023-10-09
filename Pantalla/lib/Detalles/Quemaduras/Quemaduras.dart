@@ -68,7 +68,7 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("Valoración de la Quemadura"),
             SizedBox(height: 5.0,),
 
-            estiloExplicacionDetalles(consulta(coleccionCuestionarios, 0, 2)),
+            //estiloExplicacionDetalles(consulta(coleccionCuestionarios, 0, 2)),
             SizedBox(height: 5.0,),
 
             estiloTituloDetalles("Clasificación de la Profundidad"),
