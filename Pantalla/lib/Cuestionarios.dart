@@ -22,13 +22,6 @@ class _Cuestionarios extends State<Cuestionarios> {
 
     final respuestas = List<String>.from(pregunta.respuestas);
 
-    print("en OpcionSeleccionada");
-    print(pregunta.respuestas.toString());
-    print("Seleccionada " + seleccionada.toString());
-    //print("\n-opciooon  " + opcion.toString());
-
-    https://www.youtube.com/watch?v=9EGNR8mAjnc&t=2s
-    seguir por el enlace de arriba
     if (seleccionada) {
       respuestas.remove(opcion);
     } else {
@@ -36,26 +29,9 @@ class _Cuestionarios extends State<Cuestionarios> {
     }
 
     preguntas2[indexPregunta] = pregunta.actualizarPregunta(respuestas);
-/*
-    print("debajoooooooooooooyuyyyy");
-    print("indexPreguntas " + indexPregunta.toString());
-    print("preguntas[indexpreguntas]" + preguntas[indexPregunta].toString());*/
+
     setState(() {});
   }
-  var selectedRadio;
-
-  @override
-  void initState(){
-    super.initState();
-    selectedRadio = 0;
-  }
-
-  setSelectedRadio(var val){
-    setState(() {
-      selectedRadio = val;
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,91 +42,7 @@ class _Cuestionarios extends State<Cuestionarios> {
         title: Text("Cuestionario de Quemaduras"),
         backgroundColor: Colors.blue,
       ),
-      body: Container(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                  child: SizedBox(
-                    height: 25.0,
-                    child:
-                    ListView(children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 25, left: 15, right: 15),
-                        child: Column(
-                          children:
-                          List.generate(
-                            preguntas2.length,
-                                (index) {
-                              final pregunta = preguntas2[index];
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(pregunta.enunciado,
-                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Wrap(
-                                    spacing: 5.0,
-                                    runSpacing: 5.0,
-                                    direction: Axis.vertical, // main axis (rows or columns)
-                                    children: List.generate(pregunta.opciones.length,
-                                            (indexOpciones) {
-                                          final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
-                                          bool seleccionada = pregunta.respuestas.contains(opcion);
-
-                                              return Row(
-                                            children: [
-                                                  Checkbox(
-                                                      value: seleccionada,
-
-                                                      //groupValue: selectedRadio,
-
-
-                                                      onChanged: (value){
-                                                        setState(() {
-                                                          print("VALUE " + value.toString());
-
-                                                          print("seleccionada en setState " + seleccionada.toString());
-                                                          setSelectedRadio(value);
-                                                          opcionSeleccionada(index, indexOpciones);
-
-                                                          // pregunta.opciones[indexOpciones] = value!;
-                                                        });
-                                                  }),
-                                              //radioCuestionario(index, indexOpciones),
-                                              Container(
-                                                width: 300,
-                                                height: 80,
-                                                child: Text(pregunta.opciones[indexOpciones],
-                                                  style: TextStyle(fontSize: 18),
-                                                  overflow: TextOverflow.fade,
-                                                ),
-                                              ),
-                                              SizedBox(height: 50,),
-                                            ],
-                                          );
-                                        }),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ]),
-                  )
-              ),
-              botonEnviarRespuesta("Enviar Respuestas")
-
-            ],
-          )
-        // child: SingleChildScrollView(
-
-        //),
-      ),
+      body: cuestionario(azulLogo)
     );
   }
 /*
@@ -158,49 +50,108 @@ class _Cuestionarios extends State<Cuestionarios> {
     return ;
   }*/
 
+  Widget cuestionario(Color colorElegido){
+    return Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: SizedBox(
+                  height: 25.0,
+                  child:
+                  ListView(children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 25, left: 15, right: 15),
+                      child: Column(
+                        children:
+                        List.generate(
+                          preguntas2.length,
+                              (index) {
+                            final pregunta = preguntas2[index];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(pregunta.enunciado,
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Wrap(
+                                  spacing: 5.0,
+                                  runSpacing: 5.0,
+                                  direction: Axis.vertical, // main axis (rows or columns)
+                                  children: List.generate(pregunta.opciones.length,
+                                          (indexOpciones) {
+                                        final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
+                                        bool seleccionada = pregunta.respuestas.contains(opcion);
+
+                                        return Row(
+                                          children: [
+                                            Checkbox(
+                                                value: seleccionada,
+                                                checkColor: colorElegido,
+                                                onChanged: (value){
+                                                  opcionSeleccionada(index, indexOpciones);
+                                                }),
+                                            Container(
+                                              width: 300,
+                                              height: 80,
+                                              child: Text(pregunta.opciones[indexOpciones],
+                                                style: TextStyle(fontSize: 18),
+                                                overflow: TextOverflow.fade,
+                                              ),
+                                            ),
+                                            SizedBox(height: 50,),
+                                          ],
+                                        );
+                                      }),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ]),
+                )
+            ),
+            botonEnviarRespuesta("Enviar Respuestas")
+
+          ],
+        )
+    );
+  }
 
   Widget botonEnviarRespuesta(String texto){
     return MaterialButton(
         child: estiloBoton(texto),
         onPressed: () {
-
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("", "")));
+          if (comprobarRespuestaUnica()){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("", "")));
+          }else{
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: const Text("Error"),
+                content: const Text(MENSAJE_ALERTA_CUESTIONARIOS),
+                actions: <Widget>[
+                  TextButton(
+                      child: const Text("Volver"),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }
+                  ),
+                ],
+              ),
+            );
+          }
 
         }
     );
   }
 
-/*
-  Widget listaPreguntas() {
-    return ;
-  }*/
-  /*
-Widget radioCuestionario(int documento, int campo){
 
-    return ListTile(
-      title: consulta(coleccionCuestionarios, documento, campo),
-      leading: Radio(
-        value: campo,
-        groupValue: _value,
-        //activeColor: Color(0xFF6200EE),
-        onChanged: (value) {
-          setState(() {
-            _value = value!;
-          });
-        },
-      ),
-    );
-}*/
-/*
-  void cuestionarioEntero(){
-    for (int i = 0; i <= 4; i++){
-      consulta(coleccionCuestionarios, i, 0);
-
-      for (int j = 1; j <= 4; j++){
-        radioCuestionario(0, j);
-      }
-    }
-  }*/
   /*
 metodo para iterar un documento
  */
@@ -219,7 +170,6 @@ metodo para iterar un documento
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
           data.forEach((key, value) {
-            print("kvkvkvkvkvkvkvkvkvkvkvvvvvvvv");
             Text(key.toString());
             Text(value.toString());
 
@@ -239,7 +189,19 @@ metodo para iterar un documento
     );
   }
 
+bool comprobarRespuestaUnica(){
+  bool continua = true;
 
+  preguntas2.forEach((element) {
+
+    //hay varias respuestas seleccionadas o falta alguna de contestar
+    if(element.respuestas.length == 5 ||
+        element.respuestas.length > 6){
+      continua = false;
+    }
+  });
+  return continua;
+  }
 
 
 
@@ -249,20 +211,18 @@ metodo para iterar un documento
 
 
 
-/*
-              estiloTituloDetalles("¿Qué hacer?"),
-              SizedBox(height: 5.0,),
-*/
 
 class Pregunta {
   final String enunciado;
   final List<String> opciones;
   final List<String> respuestas;
+  final String respuestaCorrecta;
 
   Pregunta({
     required this.enunciado,
     required this.opciones,
     this.respuestas = const [],
+    required this.respuestaCorrecta
   });
 
   Pregunta actualizarPregunta(List<String> respuestas) {
@@ -270,6 +230,7 @@ class Pregunta {
       enunciado: enunciado,
       opciones: opciones,
       respuestas: respuestas,
+      respuestaCorrecta: respuestaCorrecta
     );
   }
 

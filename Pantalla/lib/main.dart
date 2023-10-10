@@ -40,7 +40,7 @@ void llenarPreguntas2(int valorDocumento){
   coleccionCuestionarios.doc(documento).get().then(
           (DocumentSnapshot doc){
         final data = doc.data() as Map<String, dynamic>;
-          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""]));
+          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""], respuestaCorrecta: data["respuesta"]));
       });
 }
 

@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 import '../../Constantes.dart';
+import '../../Cuestionarios.dart';
+
 import 'BotonNavigation_Bar/MenuInferior.dart';
 
 
@@ -28,7 +30,15 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
               estiloTituloDetalles("Resultado obtenido: "),
               SizedBox(height: 5.0,),
 
-              botonVolverInicio("Inicio")
+              Text(calcularResultado().toString() + " / 100"),
+              SizedBox(height: 100.0,),
+
+              cuestionarioResuelto(),
+
+              SizedBox(height: 30.0,),
+
+              botonVolverInicio("Inicio"),
+
 
 
 
@@ -48,7 +58,23 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
         }
     );
   }
-}
+
+  int calcularResultado(){
+    int contador = 0;
+
+    preguntas2.forEach((element) {
+      if(element.respuestas.last == element.respuestaCorrecta){
+        contador += 20;
+      }
+    });
+    return contador;
+  }
+
+  cuestionarioResuelto(){
+  mostrar la solucion
+  }
+
+}//clase
 
 
 

@@ -18,6 +18,7 @@ const String IMAGEN_QUEMADURA_QUE_HACER = "assets/quemadurtasQueHacer.png";
 const String IMAGEN_QUEMADURA_QUE_NO_HACER = "assets/quemadurtasQueNOHacer.png";
 const String IMAGEN_QUEMADURA_QUIMICA_QUE_HACER = "assets/quemadurasQuimicasQueHacer.png";
 const String IMAGEN_QUEMADURA_SOLAR_PREVENIR = "assets/quemadurasSolaresPrevenir.png";
+const String MENSAJE_ALERTA_CUESTIONARIOS = 'Se ha seleccionado más de una opción por pregunta o falta alguna de contestar';
 
 //Intoxicaciones
 const String IMAGEN_INTOXICACION_HUMO = "assets/humo.png";

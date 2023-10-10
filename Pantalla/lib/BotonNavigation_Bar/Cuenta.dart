@@ -52,7 +52,7 @@ class _CuentaState extends State<Cuenta> {
           campo(CAMBIAR_CONTRASENA),
           SizedBox(height: 10,),
 
-          botonCambiarContrasena()
+          botonLogOut()
         ],
       )
 
@@ -92,7 +92,7 @@ class _CuentaState extends State<Cuenta> {
     );
   }
 
-  Widget botonCambiarContrasena(){
+  Widget botonLogOut(){
     return MaterialButton(
         child: estiloBotonHueco("Log Out"),
         onPressed: () {
