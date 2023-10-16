@@ -35,7 +35,9 @@ class _Cuestionarios extends State<Cuestionarios> {
 
   @override
   Widget build(BuildContext context) {
-    //preguntas2.add(value);
+    preguntas2.forEach((element) {
+      preguntas2.remove(value)
+    });deseleccionar cuestionario al volver a entrar
 
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +53,7 @@ class _Cuestionarios extends State<Cuestionarios> {
   }*/
 
   Widget cuestionario(Color colorElegido){
+    preguntas2.vaciarPreguntas2();
     return Container(
         child: Column(
           children: <Widget>[
@@ -128,7 +131,7 @@ class _Cuestionarios extends State<Cuestionarios> {
         child: estiloBoton(texto),
         onPressed: () {
           if (comprobarRespuestaUnica()){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("", "")));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("nombre", "foto")));
           }else{
             showDialog<String>(
               context: context,
@@ -234,7 +237,14 @@ class Pregunta {
     );
   }
 
-
+  Pregunta vaciarPreguntas2(List<String> respuestas) {
+    return Pregunta(
+        enunciado: enunciado,
+        opciones: opciones,
+        respuestas: ["", "","", "", ""],
+        respuestaCorrecta: respuestaCorrecta
+    );
+  }
 
 
 

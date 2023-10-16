@@ -100,11 +100,8 @@ Widget estiloBotonGoogle(String texto){
   );
 }
 Widget estiloExplicacionDetalles(var variable){
-  //String? texto = variable;
-  print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
   print(variable);
 
-  //consulta();
   return Padding(
     padding: EdgeInsets.all(15.0),
     child: Text(variable.toString()!,
