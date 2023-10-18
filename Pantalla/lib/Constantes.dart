@@ -36,7 +36,8 @@ String aa = "";
 final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
 late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
 var pruebaJson;
-final List<Pregunta> preguntas2 = [];
+final List<Pregunta> cuestionarioQuemaduras = [];
+final List<Pregunta> cuestionarioIntoxicaciones = [];
 
 
 

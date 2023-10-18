@@ -8,7 +8,11 @@ import 'BotonNavigation_Bar/MenuInferior.dart';
 
 
 class ResultadoCuestionarios extends StatefulWidget {
-  const ResultadoCuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
+  late String nombre;
+  List<Pregunta> lista = [];
+  ResultadoCuestionarios(this.nombre, this.lista);
+
+  //const ResultadoCuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
 
   @override
   State<ResultadoCuestionarios> createState() => _ResultadoCuestionarios();
@@ -32,6 +36,9 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
     return MaterialButton(
         child: estiloBoton(texto),
         onPressed: () {
+          widget.lista.forEach((element) {
+            element.respuestas.clear();
+          });
           Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
 
         }
@@ -41,7 +48,7 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
   int calcularResultado(){
     int contador = 0;
 
-    preguntas2.forEach((element) {
+    widget.lista.forEach((element) {
       if(element.respuestas.last == element.respuestaCorrecta){
         contador += 20;
       }
@@ -50,8 +57,6 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
   }
 
     Widget cuestionarioResuelto(Color colorElegido){
-   // bool encontrado = false;
-
       return Container(
           child: Column(
             children: <Widget>[
@@ -65,7 +70,6 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               Expanded(
                   child: SizedBox(
                     height: 25.0,
@@ -76,9 +80,9 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
                         child: Column(
                           children:
                           List.generate(
-                            preguntas2.length,
+                            widget.lista.length,
                                 (index) {
-                              final pregunta = preguntas2[index];
+                              final pregunta = widget.lista[index];
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -100,7 +104,7 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
                                           final opcion = pregunta.opciones[indexOpciones]; //opciones de la pregunta que se esta escribiendo
 
                                           //se muestra la opción correcta
-                                          if(opcion == preguntas2[index].respuestaCorrecta){
+                                          if(opcion == widget.lista[index].respuestaCorrecta){
                                             return Row(
                                               children: [
                                                 Container(
@@ -117,8 +121,8 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
                                             );
 
                                             //usuario falla
-                                          } else  if(preguntas2[index].respuestas.last == opcion &&
-                                              preguntas2[index].respuestas.last != preguntas2[index].respuestaCorrecta){
+                                          } else  if(widget.lista[index].respuestas.last == opcion &&
+                                              widget.lista[index].respuestas.last != widget.lista[index].respuestaCorrecta){
                                             //encontrado = true;
 
                                             return Row(

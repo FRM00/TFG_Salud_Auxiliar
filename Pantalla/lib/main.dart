@@ -23,25 +23,35 @@ main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value){
 
-    llenarPreguntas2(0);
-    llenarPreguntas2(1);
-    llenarPreguntas2(2);
-    llenarPreguntas2(3);
-    llenarPreguntas2(4);
+    llenarCuestionario('cuestionario_quemaduras', cuestionarioQuemaduras);
+    llenarCuestionario('cuestionario_intoxicaciones', cuestionarioIntoxicaciones);
 
     runApp(MyApp());
   });
 }
-
-void llenarPreguntas2(int valorDocumento){
+/*
+Se meten los valores en cada pregunta del cuestionario
+ */
+void llenarCuestionarioValores(int valorDocumento, String coleccion, List<Pregunta> lista){
   String documento = cambiarValorDocumento(valorDocumento);
 
-  final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
+  final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection(coleccion);
   coleccionCuestionarios.doc(documento).get().then(
           (DocumentSnapshot doc){
         final data = doc.data() as Map<String, dynamic>;
-          preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""], respuestaCorrecta: data["respuesta"]));
+          lista.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestaCorrecta: data["respuesta"]));
       });
+}
+
+/*
+  Se meten las 5 prerguntas en la lista
+ */
+void llenarCuestionario(String coleccion, List<Pregunta> lista){
+  llenarCuestionarioValores(0, coleccion, lista);
+  llenarCuestionarioValores(1, coleccion, lista);
+  llenarCuestionarioValores(2, coleccion, lista);
+  llenarCuestionarioValores(3, coleccion, lista);
+  llenarCuestionarioValores(4, coleccion, lista);
 }
 
 class MyApp extends StatelessWidget {

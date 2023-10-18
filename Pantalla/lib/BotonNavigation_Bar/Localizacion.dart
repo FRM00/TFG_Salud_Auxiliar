@@ -43,24 +43,23 @@ class Localizacion extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Color.fromARGB(1000, 0, 154, 208),
-
                   ),
                   child: GestureDetector(
                     onTap: (){
                       if (index == 0){ //quemaduras
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Quemaduras", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Quemaduras", cuestionarioQuemaduras)));
                       }else if (index == 1){ //intoxicaciones
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Intoxicaciones", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Intoxicaciones", cuestionarioIntoxicaciones)));
                       }else if (index == 2){ //convulsiones
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("convulsiones", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("convulsiones", cuestionarioQuemaduras)));
                       }else if (index == 3){ //parada cardiorespiratoria
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("parada cardiorespiratoria", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("parada cardiorespiratoria", cuestionarioQuemaduras)));
                       }else if (index == 4){ //obstruccionvia aerea
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("obstruccionvia aerea", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("obstruccionvia aerea", cuestionarioQuemaduras)));
                       }else if (index == 5){ //hemorragias
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("hemorragias", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("hemorragias", cuestionarioQuemaduras)));
                       }else if (index == 6){ //fracturas
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("fracturas", "foto")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("fracturas", cuestionarioQuemaduras)));
                       }
                     },
                     child: Column(

@@ -6,7 +6,11 @@ import 'package:prueba/ResultadosCuestionarios.dart';
 import '../../Constantes.dart';
 
 class Cuestionarios extends StatefulWidget {
-  const Cuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
+  String nombre;
+  List<Pregunta> lista = [];
+  Cuestionarios(this.nombre, this.lista);
+
+  //const Cuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
 
   @override
   State<Cuestionarios> createState() => _Cuestionarios();
@@ -16,7 +20,7 @@ class _Cuestionarios extends State<Cuestionarios> {
 
 
   void opcionSeleccionada(int indexPregunta, int indexOpcion) {
-    final Pregunta pregunta = preguntas2[indexPregunta];
+    final Pregunta pregunta = widget.lista[indexPregunta];
     final String opcion = pregunta.opciones[indexOpcion];
     final bool seleccionada = pregunta.respuestas.contains(opcion);
 
@@ -28,32 +32,24 @@ class _Cuestionarios extends State<Cuestionarios> {
       respuestas.add(opcion);
     }
 
-    preguntas2[indexPregunta] = pregunta.actualizarPregunta(respuestas);
+    widget.lista[indexPregunta] = pregunta.actualizarPregunta(respuestas);
 
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    preguntas2.forEach((element) {
-      preguntas2.remove(value)
-    });deseleccionar cuestionario al volver a entrar
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cuestionario de Quemaduras"),
+        title: Text("Cuestionario de " + widget.nombre),
         backgroundColor: Colors.blue,
       ),
       body: cuestionario(azulLogo)
     );
   }
-/*
-  Widget listaPreguntas() {
-    return ;
-  }*/
 
   Widget cuestionario(Color colorElegido){
-    preguntas2.vaciarPreguntas2();
     return Container(
         child: Column(
           children: <Widget>[
@@ -67,9 +63,9 @@ class _Cuestionarios extends State<Cuestionarios> {
                       child: Column(
                         children:
                         List.generate(
-                          preguntas2.length,
+                          widget.lista.length,
                               (index) {
-                            final pregunta = preguntas2[index];
+                            final pregunta = widget.lista[index];
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -120,7 +116,6 @@ class _Cuestionarios extends State<Cuestionarios> {
                 )
             ),
             botonEnviarRespuesta("Enviar Respuestas")
-
           ],
         )
     );
@@ -131,7 +126,7 @@ class _Cuestionarios extends State<Cuestionarios> {
         child: estiloBoton(texto),
         onPressed: () {
           if (comprobarRespuestaUnica()){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios("nombre", "foto")));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios(widget.nombre, widget.lista)));
           }else{
             showDialog<String>(
               context: context,
@@ -149,7 +144,6 @@ class _Cuestionarios extends State<Cuestionarios> {
               ),
             );
           }
-
         }
     );
   }
@@ -180,9 +174,6 @@ metodo para iterar un documento
               if(key == "pregunta"){
                 Text(value);
               }
-              /*for (int j = 1; j <= 4; j++){
-                radioCuestionario(0, j);
-              }*/
             }
           });
           //return Text("${data[campo]}");
@@ -195,11 +186,11 @@ metodo para iterar un documento
 bool comprobarRespuestaUnica(){
   bool continua = true;
 
-  preguntas2.forEach((element) {
+  widget.lista.forEach((element) {
 
     //hay varias respuestas seleccionadas o falta alguna de contestar
-    if(element.respuestas.length == 5 ||
-        element.respuestas.length > 6){
+    if(element.respuestas.length == 0 ||
+        element.respuestas.length > 1){
       continua = false;
     }
   });
@@ -236,17 +227,6 @@ class Pregunta {
       respuestaCorrecta: respuestaCorrecta
     );
   }
-
-  Pregunta vaciarPreguntas2(List<String> respuestas) {
-    return Pregunta(
-        enunciado: enunciado,
-        opciones: opciones,
-        respuestas: ["", "","", "", ""],
-        respuestaCorrecta: respuestaCorrecta
-    );
-  }
-
-
 
 
 }//clase pregunta
