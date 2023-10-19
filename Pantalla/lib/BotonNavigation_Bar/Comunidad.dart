@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prueba/Constantes.dart';
 
 class Comunidad extends StatelessWidget {
   const Comunidad({Key? key}) : super(key: key);
@@ -9,10 +10,7 @@ class Comunidad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("dddd"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Comunidad"),
       body: Text("Locaaaaal"),
     );
   }

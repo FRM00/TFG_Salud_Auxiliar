@@ -16,21 +16,6 @@ const String QUEMADURAS_QUIMICAS = "Quemaduras Quimicas";
 const String QUEMADURAS_SOLARES = "Quemaduras Solares";
 
 
-class ClaseQuemadura{
-  String nombre;
-  String foto;
-
-  ClaseQuemadura(this.nombre, this.foto);
-}
-
-/*
-final TiposQuemaduras = [
-  ClaseQuemadura("Quemaduras Electricas", ""),
-  ClaseQuemadura("Quemaduras Quimicas", ""),
-  ClaseQuemadura("Quemaduras Solares", ""),
-
-];
-*/
 class Quemaduras extends StatefulWidget {
   const Quemaduras({Key? key}) : super(key: key);
 
@@ -39,17 +24,11 @@ class Quemaduras extends StatefulWidget {
 }
 
 class _Quemaduras extends State<Quemaduras> {
-  String textoBD = "";
-  String q = "oo";
-  late Future<dynamic> dinamico;
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Quemaduras"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Quemaduras"),
       body: Container(
         margin: EdgeInsets.all(15), //para separar de arriba el margen.
         child: SingleChildScrollView(
@@ -135,47 +114,6 @@ class _Quemaduras extends State<Quemaduras> {
         }
     );
   }
-
-  Future<Text> getCamposBD() async {
-    final doc = await FirebaseFirestore.instance.
-    collection("cuestionario_quemaduras").doc("pregunta1");
-    String nada = "";
-    late Map<String, dynamic> aux;
-
-    await doc.get().then(
-          (DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        //aux = "{${data['r2']}" as Map<String, dynamic>;
-        aux = data;
-        q = data["r4"];
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-
-   print("getCamposBDDDDD_______qqqqq");
-   print(aux);
-   return Text("{${aux['r2']}");
-
-}
-
-/*
-  StreamBuilder<QuerySnapshot> getCamposBD() {
-
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.
-        collection("cuestionario_quemaduras").snapshots(),
-        builder: (context, snapshot){
-          List<Row> clientWidgets = [];
-          if(snapshot.hasData){
-            final clients = snapshot.data?.docs.reversed.toList();
-            print("nuevaFuncion");
-            print(clients);
-          }
-          return clientWidgets;
-        });
-    //print("nuevaFuncion");
-    //print(.toList().toString());
-  }*/
 
 
 

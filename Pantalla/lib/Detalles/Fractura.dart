@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../Constantes.dart';
+
 
 class Fractura extends StatefulWidget {
   const Fractura({Key? key}) : super(key: key);
@@ -13,10 +15,7 @@ class _Fractura extends State<Fractura> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Fractura"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Fractura"),
       body: Container(
 
       ),

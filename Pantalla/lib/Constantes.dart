@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'BotonNavigation_Bar/MenuInferior.dart';
+import 'Buscador.dart';
 import 'Cuestionarios.dart';
 import 'main.dart';
                         //FOTOS
@@ -28,8 +28,14 @@ const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_HACER = "assets/intoxicacione
 const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_NO_HACER = "assets/intoxicacionesViaDigestivaQueNOHacer.png";
 const String IMAGEN_INTOXICACION_VIA_RESPIRATORIA_QUE_HACER = "assets/intoxicacionesViaRespiratoriaQueHacer.png";
 const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.png";
-//const String IMAGEN_ = "";
-
+//Convulsiones
+const String IMAGEN_CONVULSIONES_QUE_HACER = "assets/convulsionesQueHacer.png";
+const String IMAGEN_CONVULSIONES_QUE_NO_HACER = "assets/convulsionesQueNOHacer.png";
+//const String IMAGEN_CONVULSIONES_CAUSAS = "assets/convulsionesCausas.png";
+/*
+const String IMAGEN_CONVULSIONES = "assets/";
+const String IMAGEN_CONVULSIONES = "assets/";
+*/
                       //OTRAS CONSTANTES
 const String NOMBRE_APP = "Salud Auxiliar";
 const String INICIAR_SESION = "Iniciar Sesión";
@@ -45,6 +51,8 @@ const String COLECCION_DETALLES = "detalles";
 const String DOCUMENTO_BD_QUEMADURAS = "quemaduras";
 const String DOCUMENTO_BD_QUEMADURAS_ELECTRICAS = "quemadurasElectricas";
 const String DOCUMENTO_BD_QUEMADURAS_QUIMICAS = "quemadurasQuimicas";
+const String DOCUMENTO_BD_INTOXICACIONES = "intoxicaciones";
+const String DOCUMENTO_BD_CONVULSIONES = "convulsiones";
 
 
                       //VARIABLES
@@ -103,18 +111,13 @@ Widget estiloBotonGoogle(String texto){
   );
 }
 
-Widget estiloExplicacionDetalles(var variable){
-  return Padding(
-    padding: EdgeInsets.all(15.0),
-    child: Text(variable.toString()!,
+Widget estiloExplicacionDetalles(String variable){
+  return Text(variable,
       textAlign: TextAlign.justify,
       style: TextStyle(
-
         fontSize: 15,
       ),
-    ),
   );
-
 }
 
 Widget estiloTituloDetalles(String texto){
@@ -146,7 +149,7 @@ Widget zoomImagen(String nombreImagen){
         children: [
           Hero(
             tag: "",
-            child: Image.asset(nombreImagen, height: 180.0,),)
+            child: Image.asset(nombreImagen, height: 250.0,),)
         ],
       )
   );
@@ -253,6 +256,46 @@ String cambiarValorDocumento(int valorCampo) {
   }
   return campo;
 }
+
+Widget filaItemize(String texto){
+  return Row(
+    children: [
+      Icon(Icons.arrow_right, ),
+
+  Container(
+    width: 300,
+    height: 40,
+    child:
+      Text(texto,
+        overflow: TextOverflow.fade,
+        textAlign: TextAlign.justify,
+        style: TextStyle(
+          fontSize: 15,
+        ),
+      ),
+  ),
+    ],
+  );
+}
+
+AppBar appBarPantallas(BuildContext context, String user){
+  return AppBar(
+    title: Text(user),
+    backgroundColor: Colors.blue,
+    actions: <Widget>[
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () {
+          showSearch(
+              context: context,
+              delegate: CustomSearchClass()
+          );
+        },
+      ),
+    ],
+  );
+}
+
 
 
 

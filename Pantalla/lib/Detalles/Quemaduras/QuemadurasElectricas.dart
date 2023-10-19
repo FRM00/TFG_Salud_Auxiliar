@@ -19,10 +19,7 @@ class _QuemadurasElectricas extends State<QuemadurasElectricas> {
   Widget build(BuildContext context) {
 
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Quemaduras Electricas"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Quemaduras Eléctricas"),
       body: Container(
         margin: EdgeInsets.all(15), //para separar de arriba el margen.
         child: SingleChildScrollView(

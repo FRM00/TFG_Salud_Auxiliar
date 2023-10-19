@@ -23,10 +23,7 @@ class _CuentaState extends State<Cuenta> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Su Cuenta"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Su Cuenta"),
       body: ListView(
         padding: EdgeInsets.all(15),
         children: [

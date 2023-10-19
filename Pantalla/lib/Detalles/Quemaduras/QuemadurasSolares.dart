@@ -16,10 +16,7 @@ class _QuemadurasSolares extends State<QuemadurasSolares> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Quemaduras Solares"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Quemaduras Solares"),
       body: Container(
         margin: EdgeInsets.all(15), //para separar de arriba el margen.
         child: SingleChildScrollView(

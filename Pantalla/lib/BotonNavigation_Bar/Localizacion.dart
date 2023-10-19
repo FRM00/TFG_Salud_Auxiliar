@@ -13,21 +13,7 @@ class Localizacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Cuestionarios"),
-        backgroundColor: Colors.blue,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(
-                  context: context,
-                  delegate: CustomSearchClass()
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: appBarPantallas(context, "Cuestionarios"),
       body: Container(
         margin: EdgeInsets.only(top: 15), //para separar de arriba el margen.
         decoration: BoxDecoration(

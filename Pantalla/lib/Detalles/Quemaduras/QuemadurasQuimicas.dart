@@ -16,10 +16,7 @@ class _QuemadurasQuimicas extends State<QuemadurasQuimicas> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Quemaduras Quimicas"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Quemaduras Químicas"),
       body: Container(
         margin: EdgeInsets.all(15), //para separar de arriba el margen.
         child: SingleChildScrollView(

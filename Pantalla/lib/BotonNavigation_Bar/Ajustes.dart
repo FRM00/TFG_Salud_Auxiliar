@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:prueba/Constantes.dart';
 
 class Ajustes extends StatelessWidget {
   const Ajustes({Key? key}) : super(key: key);
@@ -8,10 +9,7 @@ class Ajustes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text("Ajustes"),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: appBarPantallas(context, "Ajustes"),
       body: Text("Locaaaaal"),
     );
   }

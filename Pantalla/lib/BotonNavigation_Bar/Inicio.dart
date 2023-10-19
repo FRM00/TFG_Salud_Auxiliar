@@ -57,21 +57,7 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text(nombreUser()!),
-        backgroundColor: Colors.blue,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(
-                  context: context,
-                  delegate: CustomSearchClass()
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: appBarPantallas(context, nombreUser()!),
       body: Container(
         margin: EdgeInsets.only(top: 5), //para separar de arriba el margen.
         decoration: BoxDecoration(
