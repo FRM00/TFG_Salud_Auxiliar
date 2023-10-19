@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../BotonNavigation_Bar/MenuInferior.dart';
 import '../../Constantes.dart';
 
 
@@ -13,10 +14,6 @@ class QuemadurasElectricas extends StatefulWidget {
 }
 
 class _QuemadurasElectricas extends State<QuemadurasElectricas> {
-  final Stream<QuerySnapshot> doc = FirebaseFirestore.instance.
-  collection("cuestionario_quemaduras").snapshots();
-  CollectionReference users = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +24,42 @@ class _QuemadurasElectricas extends State<QuemadurasElectricas> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-
+        margin: EdgeInsets.all(15), //para separar de arriba el margen.
+        child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: <Widget>[
+              SizedBox(height: 5.0,),
+              estiloTituloDetalles("Electrocución"),
 
-              consulta(coleccionCuestionarios, 0, 0)
+              SizedBox(height: 5.0,),
+              consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS_ELECTRICAS, "electrocucion"),
+
+              SizedBox(height: 5.0,),
+              estiloTituloDetalles("Lesiones Habituales"),
+
+              SizedBox(height: 5.0,),
+              consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS_ELECTRICAS, "habituales"),
+
+              estiloTituloDetalles("¿Qué Hacer?"),
+              zoomImagen(IMAGEN_QUEMADURA_ELECTRICA_QUE_HACER),
+
+              SizedBox(height: 25.0,),
+              botonVolverInicio("Inicio")
+
             ],
-          )
-
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget botonVolverInicio(String texto){
+    return MaterialButton(
+        height: 100,
+        child: estiloBoton(texto),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+        }
     );
   }
 }

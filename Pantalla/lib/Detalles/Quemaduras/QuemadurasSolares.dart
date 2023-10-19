@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../BotonNavigation_Bar/MenuInferior.dart';
 import '../../Constantes.dart';
 
 
@@ -20,24 +21,32 @@ class _QuemadurasSolares extends State<QuemadurasSolares> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
+        margin: EdgeInsets.all(15), //para separar de arriba el margen.
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               SizedBox(height: 30.0,),
-              estiloTituloDetalles("¿Cómo se ha producido?"),
+              estiloTituloDetalles("¿En qué consiste?"),
+
               SizedBox(height: 5.0,),
+              consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS_QUIMICAS, "consiste"),
+              zoomImagen(IMAGEN_QUEMADURA_SOLAR_PREVENIR),
 
-           //   estiloExplicacionDetalles("kcfszdfcvnpsadzfg"),
+              botonVolverInicio("Inicio"),
               SizedBox(height: 5.0,),
-
-              estiloTituloDetalles("¿Cómo Prevenir?"),
-              SizedBox(height: 5.0,),
-
-
             ],
           ),
         ),
       ),
+    );
+  }
+  Widget botonVolverInicio(String texto){
+    return MaterialButton(
+        height: 100,
+        child: estiloBoton(texto),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));
+        }
     );
   }
 }

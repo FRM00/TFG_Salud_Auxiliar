@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'BotonNavigation_Bar/MenuInferior.dart';
 import 'Cuestionarios.dart';
 import 'main.dart';
-
+                        //FOTOS
 //carpeta raiz
 const String IMAGEN_LOGO = "assets/logo_sin_fondo.png";
 const String IMAGEN_GOOGLE = "assets/google.png";
 const String IMAGEN_RCP = "assets/rcp.png";
-
 //Quemaduras
 const String IMAGEN_PROFUNDIDAD_QUEMADURAS = "assets/profundidadQuemaduras.png";
 const String IMAGEN_QUEMADURA_1 = "assets/quemadura1.png";
@@ -19,7 +19,6 @@ const String IMAGEN_QUEMADURA_QUE_NO_HACER = "assets/quemadurtasQueNOHacer.png";
 const String IMAGEN_QUEMADURA_QUIMICA_QUE_HACER = "assets/quemadurasQuimicasQueHacer.png";
 const String IMAGEN_QUEMADURA_SOLAR_PREVENIR = "assets/quemadurasSolaresPrevenir.png";
 const String MENSAJE_ALERTA_CUESTIONARIOS = 'Se ha seleccionado más de una opción por pregunta o falta alguna de contestar';
-
 //Intoxicaciones
 const String IMAGEN_INTOXICACION_HUMO = "assets/humo.png";
 const String IMAGEN_INTOXICACION_ALCOHOL_QUE_HACER = "assets/intoxicacionAlcoholQueHacer.png";
@@ -29,18 +28,9 @@ const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_HACER = "assets/intoxicacione
 const String IMAGEN_INTOXICACION_VIA_DIGESTIVA_QUE_NO_HACER = "assets/intoxicacionesViaDigestivaQueNOHacer.png";
 const String IMAGEN_INTOXICACION_VIA_RESPIRATORIA_QUE_HACER = "assets/intoxicacionesViaRespiratoriaQueHacer.png";
 const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.png";
-
-
 //const String IMAGEN_ = "";
-String aa = "";
-final CollectionReference coleccionCuestionarios = FirebaseFirestore.instance.collection('cuestionario_quemaduras');
-late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
-var pruebaJson;
-final List<Pregunta> cuestionarioQuemaduras = [];
-final List<Pregunta> cuestionarioIntoxicaciones = [];
 
-
-
+                      //OTRAS CONSTANTES
 const String NOMBRE_APP = "Salud Auxiliar";
 const String INICIAR_SESION = "Iniciar Sesión";
 const String TEXTO_BOTON_GOOGLE = "       Iniciar Sesión con Gmail";
@@ -50,12 +40,22 @@ const String CORREO_ELECTRONICO = "Su correo electrónico: ";
 const String CONTRASENA = "Ingrese su contraseña: ";
 const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
 const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
+                      //COLECCIONES Y DOCUMENTOS
 const String COLECCION_DETALLES = "detalles";
 const String DOCUMENTO_BD_QUEMADURAS = "quemaduras";
+const String DOCUMENTO_BD_QUEMADURAS_ELECTRICAS = "quemadurasElectricas";
+const String DOCUMENTO_BD_QUEMADURAS_QUIMICAS = "quemadurasQuimicas";
 
+
+                      //VARIABLES
+late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
+final List<Pregunta> cuestionarioQuemaduras = [];
+final List<Pregunta> cuestionarioIntoxicaciones = [];
+
+                      //COLORES
 const Color azulLogo = Color.fromARGB(1000, 0, 154, 208);
 
-
+                    //FUNCIONES
 Widget estiloBoton(String texto) {
   return Container(
     decoration: BoxDecoration(
@@ -67,7 +67,9 @@ Widget estiloBoton(String texto) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(texto),
+      Text(texto,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 17, ))
       ],
     ),
   );
@@ -100,14 +102,14 @@ Widget estiloBotonGoogle(String texto){
       )
   );
 }
-Widget estiloExplicacionDetalles(var variable){
-  print(variable);
 
+Widget estiloExplicacionDetalles(var variable){
   return Padding(
     padding: EdgeInsets.all(15.0),
     child: Text(variable.toString()!,
       textAlign: TextAlign.justify,
       style: TextStyle(
+
         fontSize: 15,
       ),
     ),
@@ -125,54 +127,18 @@ Widget estiloTituloDetalles(String texto){
   );
 }
 
-String getBaseDatos(String coleccion, String nombreCampo){
-  print("esdrtgsdfg");
+Widget estiloSubTitulos(String texto){
+  return Text(texto,
+    textAlign: TextAlign.left,
 
-  final coleccionUsuarios = FirebaseFirestore.instance.collection(coleccion);
-    String resultado = "";
-    coleccionUsuarios.get().then((QuerySnapshot querySnapshot) => {
-      querySnapshot.docs.forEach((doc) {
-        print("dentro del for eachhchchch");
-
-        print(doc[nombreCampo]);
-        resultado = doc[nombreCampo];
-      }),
-  });
-    print("then.printtttttttttt");
-  coleccionUsuarios.get().then(print);
-  print("DESPUES then.printtttttttttt");
-
-  return resultado;
-}
-/*
-Metodo para guardar en documentoBD el docuemnto como lista
- */
-getDocumentoBD(String coleccion, String documento) async{
-
-  final doc = FirebaseFirestore.instance.collection(coleccion).doc(documento);
-  doc.get().then(
-        (DocumentSnapshot doc) {
-      final data = doc.data() as Map<String, dynamic>;
-      print("dentro del for");
-      documentoBD = data;
-        },
-    onError: (e) => print("Error getting document: $e"),
-  );
-}
-
-Widget escribirPantalla(String coleccion, String documento, String nombreCampo){
-  //String textoBD = getDetallesBaseDatos(coleccion, documento, nombreCampo);
-
-  print("textodb essss;");
-  //print(textoBD);
-  return Text("textoBD",
-    textAlign: TextAlign.justify,
     style: TextStyle(
-      fontSize: 15,
+      fontSize: 18,
+      decoration: TextDecoration.underline,
+      fontWeight: FontWeight.bold,
     ),
+
   );
 }
-
 
 Widget zoomImagen(String nombreImagen){
   return InteractiveViewer(
@@ -218,34 +184,16 @@ void consultaLista(){
       .catchError((error) => print("Failed to update user followers: $error"));
 }
 
-/*
-llenarListaPreguntas(CollectionReference coleccion, int valorDocumento) {
-  String documento = cambiarValorDocumento(valorDocumento);
 
-  return FutureBuilder<DocumentSnapshot>(
-    future: coleccion.doc(documento).get(),
-    builder:
-        (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+FutureBuilder<DocumentSnapshot> consulta(String coleccion, String documento, String campo) {
+  final CollectionReference coleccionConsulta = FirebaseFirestore.instance.collection(coleccion);
 
-        preguntas2.add(Pregunta(enunciado: data["pregunta"], opciones: [data["r1"],data["r2"],data["r3"],data["r4"]], respuestas: ["", "","","",""]));
-
-        return Container();
-    },
-  );
-}*/
-FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valorDocumento, int valorCampo) {
+  /*
   String campo = cambiarValorCampo(valorCampo);
   String documento = cambiarValorDocumento(valorDocumento);
-
-  //llenamos la lista preguntas2
-  print("data.llenar nppppppppppppppppppppppp");
-
-  //print(preguntas2[0].enunciado);
-
-
+*/
   return FutureBuilder<DocumentSnapshot>(
-    future: coleccion.doc(documento).get(),
+    future: coleccionConsulta.doc(documento).get(),
     builder:
         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
       if (snapshot.hasError) {
@@ -258,9 +206,14 @@ FutureBuilder<DocumentSnapshot> consulta(CollectionReference coleccion, int valo
       if (snapshot.connectionState == ConnectionState.done) {
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
 
-        return Text("${data[campo]}");
+        return Text("${data[campo]}", textAlign: TextAlign.justify,
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        );
       }
-      return Text("");
+      return Column();
+
     },
   );
 }

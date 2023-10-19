@@ -51,25 +51,42 @@ class _Quemaduras extends State<Quemaduras> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-    child: SingleChildScrollView(
+        margin: EdgeInsets.all(15), //para separar de arriba el margen.
+        child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 25.0,),
-
             estiloTituloDetalles("¿En qué consiste?"),
+
             SizedBox(height: 5.0,),
+            consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "consiste"),
 
-
-          //  estiloExplicacionDetalles(q),
-
-            escribirPantalla(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "consiste"),
-            SizedBox(height: 5.0,),
-
+            SizedBox(height: 20.0,),
             estiloTituloDetalles("Valoración de la Quemadura"),
             SizedBox(height: 5.0,),
 
-            //estiloExplicacionDetalles(consulta(coleccionCuestionarios, 0, 2)),
+            estiloSubTitulos("Gravedad"),
             SizedBox(height: 5.0,),
+
+            consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "gravedad"),
+            SizedBox(height: 5.0,),
+
+            estiloSubTitulos("Extensión"),
+            SizedBox(height: 5.0,),
+
+            consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "extension"),
+            SizedBox(height: 5.0,),
+
+            estiloSubTitulos("Localización"),
+            SizedBox(height: 5.0,),
+
+            consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "localizacion"),
+            SizedBox(height: 5.0,),
+
+            estiloSubTitulos("Profundidad"),
+            SizedBox(height: 5.0,),
+
+            consulta(COLECCION_DETALLES, DOCUMENTO_BD_QUEMADURAS, "profundidad"),
+            SizedBox(height: 20.0,),
 
             estiloTituloDetalles("Clasificación de la Profundidad"),
             zoomImagen(IMAGEN_PROFUNDIDAD_QUEMADURAS),
@@ -77,7 +94,7 @@ class _Quemaduras extends State<Quemaduras> {
             estiloTituloDetalles("¿Qué Hacer?"),
             zoomImagen(IMAGEN_QUEMADURA_QUE_HACER),
 
-            estiloTituloDetalles("aa"),
+            estiloTituloDetalles("¿Qué no hacer?"),
             zoomImagen(IMAGEN_QUEMADURA_QUE_NO_HACER),
 
             botonTipoQuemadura(QUEMADURAS_ELECTRICAS),
