@@ -281,7 +281,7 @@ Widget filaItemize(String texto){
 AppBar appBarPantallas(BuildContext context, String user){
   return AppBar(
     title: Text(user),
-    backgroundColor: Colors.blue,
+    backgroundColor: azulLogo,
     actions: <Widget>[
       IconButton(
         icon: Icon(Icons.search),

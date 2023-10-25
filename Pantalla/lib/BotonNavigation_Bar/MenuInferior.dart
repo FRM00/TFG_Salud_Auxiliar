@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'Ajustes.dart';
-import 'Comunidad.dart';
+import 'NumerosTelefono.dart';
 import 'Cuenta.dart';
 import 'Inicio.dart';
 import 'Localizacion.dart';

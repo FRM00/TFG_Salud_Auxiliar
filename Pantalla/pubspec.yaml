@@ -42,6 +42,7 @@ dependencies:
   provider:
   firebase_database: ^10.1.1
   group_radio_button: ^1.3.0
+  flutter_phone_direct_caller: ^2.1.1
 
 dev_dependencies:
   flutter_test:
