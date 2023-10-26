@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'BotonNavigation_Bar/Cuenta.dart';
 import 'Buscador.dart';
+import 'Cuestionario.dart';
 import 'Cuestionarios.dart';
+import 'Pregunta.dart';
 import 'main.dart';
                         //FOTOS
 //carpeta raiz
@@ -42,7 +45,7 @@ const String INICIAR_SESION = "Iniciar Sesión";
 const String TEXTO_BOTON_GOOGLE = "       Iniciar Sesión con Gmail";
 const String REGISTRARSE = "Registrar Usuario";
 const String NOMBRE_USER = "Nombre de Usuario: ";
-const String CORREO_ELECTRONICO = "Su correo electrónico: ";
+const String CORREO_ELECTRONICO = "Su correo: ";
 const String CONTRASENA = "Ingrese su contraseña: ";
 const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
 const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
@@ -59,6 +62,8 @@ const String DOCUMENTO_BD_CONVULSIONES = "convulsiones";
 late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
 final List<Pregunta> cuestionarioQuemaduras = [];
 final List<Pregunta> cuestionarioIntoxicaciones = [];
+final List<Cuestionario> cuestionarios = [];
+
 
                       //COLORES
 const Color azulLogo = Color.fromARGB(1000, 0, 154, 208);
@@ -113,9 +118,10 @@ Widget estiloBotonGoogle(String texto){
 
 Widget estiloExplicacionDetalles(String variable){
   return Text(variable,
-      textAlign: TextAlign.justify,
-      style: TextStyle(
-        fontSize: 15,
+    textAlign: TextAlign.justify,
+    overflow: TextOverflow.fade,
+    style: TextStyle(
+        fontSize: 17,
       ),
   );
 }

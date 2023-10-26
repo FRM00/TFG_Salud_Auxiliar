@@ -4,11 +4,15 @@ import 'package:group_radio_button/group_radio_button.dart';
 import 'package:prueba/ResultadosCuestionarios.dart';
 
 import '../../Constantes.dart';
+import 'Cuestionario.dart';
+import 'Pregunta.dart';
 
 class Cuestionarios extends StatefulWidget {
   String nombre;
+  //cuestionario que contiene las preguntas, opciones y respuestas disponibles
   List<Pregunta> lista = [];
-  Cuestionarios(this.nombre, this.lista);
+  Cuestionario cuestionario;
+  Cuestionarios(this.nombre, this.lista, this.cuestionario);
 
   //const Cuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
 
@@ -126,7 +130,7 @@ class _Cuestionarios extends State<Cuestionarios> {
         child: estiloBoton(texto),
         onPressed: () {
           if (comprobarRespuestaUnica()){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios(widget.nombre, widget.lista)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios(widget.nombre, widget.lista, widget.cuestionario)));
           }else{
             showDialog<String>(
               context: context,
@@ -205,28 +209,3 @@ bool comprobarRespuestaUnica(){
 
 
 
-
-class Pregunta {
-  final String enunciado;
-  final List<String> opciones;
-  final List<String> respuestas;
-  final String respuestaCorrecta;
-
-  Pregunta({
-    required this.enunciado,
-    required this.opciones,
-    this.respuestas = const [],
-    required this.respuestaCorrecta
-  });
-
-  Pregunta actualizarPregunta(List<String> respuestas) {
-    return Pregunta(
-      enunciado: enunciado,
-      opciones: opciones,
-      respuestas: respuestas,
-      respuestaCorrecta: respuestaCorrecta
-    );
-  }
-
-
-}//clase pregunta

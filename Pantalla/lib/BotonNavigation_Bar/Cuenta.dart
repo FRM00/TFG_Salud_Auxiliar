@@ -19,40 +19,84 @@ class Cuenta extends StatefulWidget {
 }
 
 class _CuentaState extends State<Cuenta> {
-  @override
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: appBarPantallas(context, "Su Cuenta"),
-      body: ListView(
-        padding: EdgeInsets.all(15),
-        children: [
-          Image.asset(IMAGEN_LOGO, height: 180.0,),
+      body: Container(
+        margin: EdgeInsets.all(15),
+        child: Column(
+          children: <Widget>[
+            Image.asset(IMAGEN_LOGO, height: 180.0,),
+            SizedBox(height: 20,),
 
-          fila(NOMBRE_USER, getNombreUser()!),
-          SizedBox(height: 20,),
+            filaDatosUsuario(NOMBRE_USER, getNombreUser()!),
+            SizedBox(height: 15,),
 
-          fila(CORREO_ELECTRONICO, getEmailUser()!),
+            filaDatosUsuario(CORREO_ELECTRONICO, getEmailUser()!),
 
-          SizedBox(height: 20,),
+            SizedBox(height: 20,),
 
-          Text(CONTRASENA),
+            estiloTituloDetalles("Resultado de los Cuestionarios"),
 
-          campo("Contraseña"),
+            SizedBox(height: 15,),
 
-          campo(CAMBIAR_CONTRASENA),
+            Expanded(
+                child: SizedBox(
+                  height: 25.0,
+                  child:
+                  ListView(children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 25, left: 25, right: 15),
+                      child: Column(
+                        children:
+                        List.generate(
+                          cuestionarios.length,
+                              (index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(cuestionarios[index].nombre,
+                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 5,),
+                                filaCuestionario("Intentos: " + cuestionarios[index].intentos.toString()),
 
-          SizedBox(height: 20,),
-          Text(REPETIR_CONTRASENA),
-          SizedBox(height: 20,),
+                                SizedBox(height: 5.0,),
+                                filaCuestionario("Máxima Puntuación: " + cuestionarios[index].maximaPuntuacion.toString()),
+                                SizedBox(height: 20.0,),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ]),
+                )
+            ),
+            botonLogOut(),
+          ],
+        ),
+      ),
+    );
+  }
 
-          campo(CAMBIAR_CONTRASENA),
-          SizedBox(height: 10,),
+  Widget filaCuestionario(String texto){
+    return Row(
+      children: [
+        Icon(Icons.arrow_right, ),
 
-          botonLogOut()
-        ],
-      )
-
+        Container(
+          child: Text(texto,
+            overflow: TextOverflow.fade,
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -80,13 +124,14 @@ class _CuentaState extends State<Cuenta> {
     );
   }
 
-  Widget fila(String texto, String valor){
-    return Row(
-      children: [
-        Text(texto),
-        Text(valor)
-      ],
+  Widget filaDatosUsuario(String texto, String valor){
+    return Wrap(
+        children: <Widget>[
+          estiloExplicacionDetalles(texto),
+          estiloExplicacionDetalles(valor),
+        ],
     );
+
   }
 
   Widget botonLogOut(){
@@ -141,4 +186,6 @@ class _CuentaState extends State<Cuenta> {
       child: const Text('Show Dialog'),
     );
   }
-}
+} //clase cuenta
+
+

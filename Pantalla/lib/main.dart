@@ -11,8 +11,10 @@ import 'BotonNavigation_Bar/Cuenta.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'BotonNavigation_Bar/MenuInferior.dart';
 import 'Constantes.dart';
+import 'Cuestionario.dart';
 import 'Cuestionarios.dart';
 import 'GoogleInicioSesion.dart';
+import 'Pregunta.dart';
 import 'firebase_options.dart';
 
 //para alinear algo a la izda : dentro de column --> crossAxisAligement: CrossAxisAligement.start
@@ -26,8 +28,21 @@ main() {
     llenarCuestionario('cuestionario_quemaduras', cuestionarioQuemaduras);
     llenarCuestionario('cuestionario_intoxicaciones', cuestionarioIntoxicaciones);
 
+    llenarResultadosCuestionarios();
+
     runApp(MyApp());
   });
+}
+
+void llenarResultadosCuestionarios(){
+  cuestionarios.add(Cuestionario(nombre: "Quemaduras", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Intoxicaciones", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Convulsiones", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Parada Cardiorrespiratoria", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Obstrucción vía aerea", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Hemorragias", intentos: 0, maximaPuntuacion: 0));
+  cuestionarios.add(Cuestionario(nombre: "Fracturas", intentos: 0, maximaPuntuacion: 0));
+
 }
 /*
 Se meten los valores en cada pregunta del cuestionario
@@ -89,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //getDocumentoBD("detalles","quemaduras", "consiste");
 
     if(comprobarLogin()){
       Navigator.push(context, MaterialPageRoute(builder: (context)=> EstadoPaginas()));

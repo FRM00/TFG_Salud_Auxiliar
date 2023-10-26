@@ -5,12 +5,16 @@ import '../../Constantes.dart';
 import '../../Cuestionarios.dart';
 
 import 'BotonNavigation_Bar/MenuInferior.dart';
+import 'Cuestionario.dart';
+import 'Pregunta.dart';
 
 
 class ResultadoCuestionarios extends StatefulWidget {
   late String nombre;
   List<Pregunta> lista = [];
-  ResultadoCuestionarios(this.nombre, this.lista);
+  Cuestionario cuestionario;
+
+  ResultadoCuestionarios(this.nombre, this.lista, this.cuestionario);
 
   //const ResultadoCuestionarios(String nombre, String foto, {Key? key}) : super(key: key);
 
@@ -53,6 +57,14 @@ class _ResultadoCuestionarios extends State<ResultadoCuestionarios> {
         contador += 20;
       }
     });
+    cuestionarios.forEach((element) {
+      if(element.nombre == widget.nombre){
+        if (contador > widget.cuestionario.maximaPuntuacion){
+          widget.cuestionario.maximaPuntuacion = contador;
+        }
+      }
+    });
+    widget.cuestionario.intentos = widget.cuestionario.intentos + 1;
     return contador;
   }
 
