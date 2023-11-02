@@ -35,14 +35,24 @@ const String IMAGEN_INTOXICACION_MONOXIDO_CARBONO = "assets/monoxidoDeCarbono.pn
 const String IMAGEN_CONVULSIONES_QUE_HACER = "assets/convulsionesQueHacer.png";
 const String IMAGEN_CONVULSIONES_QUE_NO_HACER = "assets/convulsionesQueNOHacer.png";
 //const String IMAGEN_CONVULSIONES_CAUSAS = "assets/convulsionesCausas.png";
-/*
-const String IMAGEN_CONVULSIONES = "assets/";
-const String IMAGEN_CONVULSIONES = "assets/";
-*/
+
+//Hemorragias
+const String IMAGEN_HEMORRAGIAS_QUE_NO_HACER = "assets/hemorragiasQueNOHacer.png";
+const String IMAGEN_HEMORRAGIAS_QUE_HACER = "assets/hemorragiasQueHacer.png";
+const String IMAGEN_HEMORRAGIAS_INTERNAS_QUE_HACER = "assets/hemorragiasInternasQueHacer.png";
+const String IMAGEN_HEMORRAGIAS_NARIZ = "assets/hemorragiaNariz.png";
+const String IMAGEN_HEMORRAGIAS_CLASIFICACION = "assets/hemorragiaClasificacion.png";
+const String IMAGEN_HEMORRAGIAS_TORNIQUETE = "assets/torniquete.png";
+
+
+
+//const String IMAGEN_HEMORRAGIAS = "assets/.png";
+
+
                       //OTRAS CONSTANTES
 const String NOMBRE_APP = "Salud Auxiliar";
 const String INICIAR_SESION = "Iniciar Sesión";
-const String TEXTO_BOTON_GOOGLE = "       Iniciar Sesión con Gmail";
+const String TEXTO_BOTON_GOOGLE = "Iniciar Sesión";
 const String REGISTRARSE = "Registrar Usuario";
 const String NOMBRE_USER = "Nombre de Usuario: ";
 const String CORREO_ELECTRONICO = "Su correo: ";
@@ -56,6 +66,7 @@ const String DOCUMENTO_BD_QUEMADURAS_ELECTRICAS = "quemadurasElectricas";
 const String DOCUMENTO_BD_QUEMADURAS_QUIMICAS = "quemadurasQuimicas";
 const String DOCUMENTO_BD_INTOXICACIONES = "intoxicaciones";
 const String DOCUMENTO_BD_CONVULSIONES = "convulsiones";
+const String DOCUMENTO_BD_HEMORRAGIAS = "hemorragias";
 
 
                       //VARIABLES
@@ -105,12 +116,23 @@ Widget estiloBotonHueco(String texto){
 
 Widget estiloBotonGoogle(String texto){
   return Container(
-      padding: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+          border: Border.all(color: azulLogo),
+          borderRadius: BorderRadius.circular(10)
+      ),
+      padding: EdgeInsets.all(25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(texto),
-          Image.asset(IMAGEN_GOOGLE, height: 75,),
+          Text(texto,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 22,
+              color: azulLogo,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          Image.asset(IMAGEN_GOOGLE, height: 100,),
         ],
       )
   );
@@ -128,7 +150,7 @@ Widget estiloExplicacionDetalles(String variable){
 
 Widget estiloTituloDetalles(String texto){
   return Text(texto,
-    textAlign: TextAlign.justify,
+    textAlign: TextAlign.center,
     style: TextStyle(
       fontSize: 25,
       fontWeight: FontWeight.bold,

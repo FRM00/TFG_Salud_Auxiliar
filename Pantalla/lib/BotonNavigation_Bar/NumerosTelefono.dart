@@ -17,20 +17,29 @@ class Comunidad extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 5.0,),
+              SizedBox(height: 25.0,),
               estiloTituloDetalles("Se llamará automáticamente"),
+              SizedBox(height: 35.0,),
+
+              botonHacerLlamada("Emergencias", "112"),
               SizedBox(height: 5.0,),
 
-              botonHacerLlamada("Llamar Javi", "679345646"),
+              botonHacerLlamada("Bomberos", "085"),
               SizedBox(height: 5.0,),
 
-              botonHacerLlamada("Llamar Cova", "689289328"),
+              botonHacerLlamada("Guardia Civil", "062"),
               SizedBox(height: 5.0,),
 
-              botonHacerLlamada("Llamar Sirenita", "682652964"),
+              botonHacerLlamada("Policía Nacional", "091"),
               SizedBox(height: 5.0,),
 
-              botonHacerLlamada("Llamar Casa", "975231252"),
+              botonHacerLlamada("Tráfico", "011"),
+              SizedBox(height: 5.0,),
+
+              botonHacerLlamada("Cruz Roja", "900221122"),
+              SizedBox(height: 5.0,),
+
+              botonHacerLlamada("Emergencias Sanitarias", "061"),
               SizedBox(height: 5.0,),
 
             ],

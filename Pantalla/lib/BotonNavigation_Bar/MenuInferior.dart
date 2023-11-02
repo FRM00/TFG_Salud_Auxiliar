@@ -7,7 +7,7 @@ import 'Ajustes.dart';
 import 'NumerosTelefono.dart';
 import 'Cuenta.dart';
 import 'Inicio.dart';
-import 'Localizacion.dart';
+import 'ApartadoCuestionarios.dart';
 
 
 
@@ -49,10 +49,10 @@ class MenuInferior extends State<EstadoPaginas> {
         },
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.account_box), label: "Cuenta"),
-            BottomNavigationBarItem(icon: Icon(Icons.people), label: "Comunidad"),
+            BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Teléfonos"),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-            BottomNavigationBarItem(icon: Icon(Icons.map), label: "Cuestionarios"),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Ajustes"),
+            BottomNavigationBarItem(icon: Icon(Icons.question_answer), label: "Cuestionarios"),
+            BottomNavigationBarItem(icon: Icon(Icons.people), label: "About"),
           ],
         ),
 

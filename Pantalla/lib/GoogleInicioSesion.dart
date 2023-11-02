@@ -1,7 +1,5 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleInicioSesion{
@@ -31,19 +29,15 @@ class GoogleInicioSesion{
     await googleIniciarSesion.signOut();
 
   }
+
 /*
 getCorreoFirebase() async{
   FirebaseDatabase.instance.reference();
-
-
-
-
-
 }
 */
 }
 
-
+/*
 class Usuario {
   String correoElectronico;
   String contrasenaPass;
@@ -55,7 +49,7 @@ class Usuario {
     return Usuario(user);
     //return null;
   }*/
-}
+}*/
 
 
 
