@@ -1,18 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:prueba/Detalles/Convulsiones.dart';
 import 'package:prueba/Detalles/Fractura.dart';
 import 'package:prueba/Detalles/Hemorragia.dart';
 import 'package:prueba/Detalles/Intoxicaciones.dart';
-import 'package:prueba/Detalles/Obstruccion.dart';
-import 'package:prueba/Detalles/ParadaCardio.dart';
-import '../Buscador.dart';
 import '../Constantes.dart';
 import '../Detalles/Quemaduras/Quemaduras.dart';
-import '../main.dart';
-import 'ElementoMenuPrincipal.dart';
 
 /*
 Clase para las entradas del menu
@@ -31,8 +25,6 @@ final MenuPrincipal = [
   ElementoMenuPrincipal("Quemaduras", ""),
   ElementoMenuPrincipal("Intoxicaciones", ""),
   ElementoMenuPrincipal("Convulsiones", ""),
-  ElementoMenuPrincipal("Parada Cardiorrespiratoria", ""),
-  ElementoMenuPrincipal("Obstrucción vía aerea", ""),
   ElementoMenuPrincipal("Hemorragias", ""),
   ElementoMenuPrincipal("Fracturas", ""),
 
@@ -82,12 +74,8 @@ class _InicioState extends State<Inicio> {
                     }else if (index == 2){ //convulsiones
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> Convulsiones()));
                     }else if (index == 3){ //parada cardiorespiratoria
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ParadaCardio()));
-                    }else if (index == 4){ //obstruccionvia aerea
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Obstruccion()));
-                    }else if (index == 5){ //hemorragias
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> Hemorragia()));
-                    }else if (index == 6){ //fracturas
+                    }else if (index == 4){ //obstruccionvia aerea
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> Fractura()));
                     }
                     },

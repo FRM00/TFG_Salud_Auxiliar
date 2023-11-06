@@ -41,8 +41,6 @@ void llenarResultadosCuestionarios(){
   cuestionarios.add(Cuestionario(nombre: "Quemaduras", intentos: 0, maximaPuntuacion: 0));
   cuestionarios.add(Cuestionario(nombre: "Intoxicaciones", intentos: 0, maximaPuntuacion: 0));
   cuestionarios.add(Cuestionario(nombre: "Convulsiones", intentos: 0, maximaPuntuacion: 0));
-  cuestionarios.add(Cuestionario(nombre: "Parada Cardiorrespiratoria", intentos: 0, maximaPuntuacion: 0));
-  cuestionarios.add(Cuestionario(nombre: "Obstrucción vía aerea", intentos: 0, maximaPuntuacion: 0));
   cuestionarios.add(Cuestionario(nombre: "Hemorragias", intentos: 0, maximaPuntuacion: 0));
   cuestionarios.add(Cuestionario(nombre: "Fracturas", intentos: 0, maximaPuntuacion: 0));
 
