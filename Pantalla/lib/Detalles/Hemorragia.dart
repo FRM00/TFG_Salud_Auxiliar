@@ -15,7 +15,7 @@ class _Hemorragia extends State<Hemorragia> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: appBarPantallas(context, "Convulsiones"),
+      appBar: appBarPantallas(context, "Hemorragias"),
       body: Container(
         margin: EdgeInsets.all(25), //para separar de arriba el margen.
         child: SingleChildScrollView(

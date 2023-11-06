@@ -44,10 +44,14 @@ const String IMAGEN_HEMORRAGIAS_NARIZ = "assets/hemorragiaNariz.png";
 const String IMAGEN_HEMORRAGIAS_CLASIFICACION = "assets/hemorragiaClasificacion.png";
 const String IMAGEN_HEMORRAGIAS_TORNIQUETE = "assets/torniquete.png";
 
+//Fracturas
+const String IMAGEN_FRACTURAS_QUE_HACER = "assets/fracturasQueHacer.png";
+const String IMAGEN_FRACTURAS_QUE_NO_HACER = "assets/fracturasQueNOHacer.png";
 
-
-//const String IMAGEN_HEMORRAGIAS = "assets/.png";
-
+/*
+const String IMAGEN_HEMORRAGIAS = "assets/.png";
+const String IMAGEN_HEMORRAGIAS = "assets/.png";
+*/
 
                       //OTRAS CONSTANTES
 const String NOMBRE_APP = "Salud Auxiliar";
@@ -67,12 +71,17 @@ const String DOCUMENTO_BD_QUEMADURAS_QUIMICAS = "quemadurasQuimicas";
 const String DOCUMENTO_BD_INTOXICACIONES = "intoxicaciones";
 const String DOCUMENTO_BD_CONVULSIONES = "convulsiones";
 const String DOCUMENTO_BD_HEMORRAGIAS = "hemorragias";
+const String DOCUMENTO_BD_FRACTURAS = "fracturas";
 
 
                       //VARIABLES
 late Map<String, dynamic> documentoBD; //variable para iterar.  es un documento de una coleccion.
 final List<Pregunta> cuestionarioQuemaduras = [];
 final List<Pregunta> cuestionarioIntoxicaciones = [];
+final List<Pregunta> cuestionarioConvulsiones = [];
+final List<Pregunta> cuestionarioHemorragias = [];
+final List<Pregunta> cuestionarioFracturas = [];
+
 final List<Cuestionario> cuestionarios = [];
 
 

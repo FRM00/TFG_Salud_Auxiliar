@@ -27,6 +27,9 @@ main() {
 
     llenarCuestionario('cuestionario_quemaduras', cuestionarioQuemaduras);
     llenarCuestionario('cuestionario_intoxicaciones', cuestionarioIntoxicaciones);
+    llenarCuestionario('cuestionario_convulsiones', cuestionarioConvulsiones);
+    llenarCuestionario('cuestionario_hemorragias', cuestionarioHemorragias);
+    llenarCuestionario('cuestionario_fracturas', cuestionarioFracturas);
 
     llenarResultadosCuestionarios();
 

@@ -37,15 +37,15 @@ class Localizacion extends StatelessWidget {
                       }else if (index == 1){ //intoxicaciones
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Intoxicaciones", cuestionarioIntoxicaciones, cuestionarios[1])));
                       }else if (index == 2){ //convulsiones
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("convulsiones", cuestionarioQuemaduras, cuestionarios[2])));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Convulsiones", cuestionarioConvulsiones, cuestionarios[2])));
                       }else if (index == 3){ //parada cardiorespiratoria
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("parada cardiorespiratoria", cuestionarioQuemaduras, cuestionarios[3])));
                       }else if (index == 4){ //obstruccionvia aerea
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("obstruccionvia aerea", cuestionarioQuemaduras, cuestionarios[4])));
                       }else if (index == 5){ //hemorragias
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("hemorragias", cuestionarioQuemaduras, cuestionarios[5])));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Hemorragias", cuestionarioHemorragias, cuestionarios[5])));
                       }else if (index == 6){ //fracturas
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("fracturas", cuestionarioQuemaduras, cuestionarios[6])));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cuestionarios("Fracturas", cuestionarioFracturas, cuestionarios[6])));
                       }
                     },
                     child: Column(
