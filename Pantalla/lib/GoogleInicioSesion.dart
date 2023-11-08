@@ -27,35 +27,7 @@ class GoogleInicioSesion{
   logOutGoogle() async {
     await auth.signOut();
     await googleIniciarSesion.signOut();
-
   }
 
-/*
-getCorreoFirebase() async{
-  FirebaseDatabase.instance.reference();
 }
-*/
-}
-
-/*
-class Usuario {
-  String correoElectronico;
-  String contrasenaPass;
-
-  Usuario(this.correoElectronico, this.contrasenaPass);
-/*
-  factory Usuario.fromFireStore(DocumentSnapshot snapshot) {
-    Object? user = snapshot.data();
-    return Usuario(user);
-    //return null;
-  }*/
-}*/
-
-
-
-
-
-
-
-
 

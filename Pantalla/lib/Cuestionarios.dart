@@ -130,7 +130,8 @@ class _Cuestionarios extends State<Cuestionarios> {
         child: estiloBoton(texto),
         onPressed: () {
           if (comprobarRespuestaUnica()){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultadoCuestionarios(widget.nombre, widget.lista, widget.cuestionario)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                  ResultadoCuestionarios(widget.nombre, widget.lista, widget.cuestionario)));
           }else{
             showDialog<String>(
               context: context,

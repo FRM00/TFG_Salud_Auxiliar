@@ -31,14 +31,12 @@ class MenuInferior extends State<EstadoPaginas> {
       onWillPop: () async {
     return false;
     },
-
       child : MaterialApp(
       home: Scaffold(
         body: paginas[estadoActual],
 
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: estadoActual,
-
           backgroundColor: Colors.white,
           selectedItemColor: Colors.black,
           unselectedItemColor: Color.fromRGBO(0, 154, 208, 100.0),
