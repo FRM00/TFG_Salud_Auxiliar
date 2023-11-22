@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'Ajustes.dart';
+import 'About.dart';
 import 'NumerosTelefono.dart';
 import 'Cuenta.dart';
 import 'Inicio.dart';

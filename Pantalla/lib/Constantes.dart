@@ -48,11 +48,6 @@ const String IMAGEN_HEMORRAGIAS_TORNIQUETE = "assets/torniquete.png";
 const String IMAGEN_FRACTURAS_QUE_HACER = "assets/fracturasQueHacer.png";
 const String IMAGEN_FRACTURAS_QUE_NO_HACER = "assets/fracturasQueNOHacer.png";
 
-/*
-const String IMAGEN_HEMORRAGIAS = "assets/.png";
-const String IMAGEN_HEMORRAGIAS = "assets/.png";
-*/
-
                       //OTRAS CONSTANTES
 const String NOMBRE_APP = "Salud Auxiliar";
 const String INICIAR_SESION = "Iniciar Sesión";
@@ -65,6 +60,8 @@ const String CAMBIAR_CONTRASENA = "Nueva contraseña: ";
 const String REPETIR_CONTRASENA = "Repita la nueva contraseña: ";
                       //COLECCIONES Y DOCUMENTOS
 const String COLECCION_DETALLES = "detalles";
+const String COLECCION_AVISO_LEGAL = "aviso_legal";
+const String DOCUMENTO_BD_AVISO_LEGAL = "informacion";
 const String DOCUMENTO_BD_QUEMADURAS = "quemaduras";
 const String DOCUMENTO_BD_QUEMADURAS_ELECTRICAS = "quemadurasElectricas";
 const String DOCUMENTO_BD_QUEMADURAS_QUIMICAS = "quemadurasQuimicas";
