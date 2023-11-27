@@ -319,8 +319,8 @@ AppBar appBarPantallas(BuildContext context, String user){
     actions: <Widget>[
       IconButton(
         icon: Icon(Icons.search),
-        onPressed: () {
-          showSearch(
+        onPressed: () async {
+          await showSearch(
               context: context,
               delegate: CustomSearchClass()
           );
