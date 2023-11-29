@@ -1,3 +1,10 @@
+/*
+  Autor: Fernando Revilla Maqueda
+
+ Este código sigue los términos de la Licencia de Documentación Libre GNU (GNU FDL).
+ Además, está sujeto a los términos de la Licencia Pública General de GNU (GPL).
+ */
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +19,13 @@ import 'main.dart';
 const String IMAGEN_LOGO = "assets/logo_sin_fondo.png";
 const String IMAGEN_GOOGLE = "assets/google.png";
 const String IMAGEN_RCP = "assets/rcp.png";
+const String IMAGEN_LOGO_QUEMADURAS = "assets/logoQuemaduras.png";
+const String IMAGEN_LOGO_HEMORRAGIAS = "assets/logoHemorragia.png";
+const String IMAGEN_LOGO_FRACTURAS = "assets/logoFractura.png";
+const String IMAGEN_LOGO_CONVULSIONES = "assets/logoConvulsion.png";
+const String IMAGEN_LOGO_INTOXICACIONES = "assets/logoIntoxicacion.png";
+
+
 //Quemaduras
 const String IMAGEN_PROFUNDIDAD_QUEMADURAS = "assets/profundidadQuemaduras.png";
 const String IMAGEN_QUEMADURA_1 = "assets/quemadura1.png";

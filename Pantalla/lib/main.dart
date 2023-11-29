@@ -1,21 +1,17 @@
-import 'dart:async';
+/*
+  Autor: Fernando Revilla Maqueda
 
+ Este código sigue los términos de la Licencia de Documentación Libre GNU (GNU FDL).
+ Además, está sujeto a los términos de la Licencia Pública General de GNU (GPL).
+ */
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:prueba/BotonNavigation_Bar/Inicio.dart';
-import 'package:prueba/Registrarse.dart';
-
-import 'BotonNavigation_Bar/Cuenta.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'BotonNavigation_Bar/MenuInferior.dart';
 import 'Constantes.dart';
 import 'Cuestionario.dart';
-import 'Cuestionarios.dart';
 import 'GoogleInicioSesion.dart';
 import 'Pregunta.dart';
-import 'firebase_options.dart';
 
 //para alinear algo a la izda : dentro de column --> crossAxisAligement: CrossAxisAligement.start
 

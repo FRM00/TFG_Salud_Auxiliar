@@ -1,3 +1,9 @@
+/*
+  Autor: Fernando Revilla Maqueda
+
+ Este código sigue los términos de la Licencia de Documentación Libre GNU (GNU FDL).
+ Además, está sujeto a los términos de la Licencia Pública General de GNU (GPL).
+ */
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

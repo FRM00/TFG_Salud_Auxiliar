@@ -1,3 +1,10 @@
+/*
+  Autor: Fernando Revilla Maqueda
+
+ Este código sigue los términos de la Licencia de Documentación Libre GNU (GNU FDL).
+ Además, está sujeto a los términos de la Licencia Pública General de GNU (GPL).
+ */
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +89,7 @@ class _InicioState extends State<Inicio> {
                   child: Column(
                     children: [
                       SizedBox(height: 10.0,),
-                      Image.asset(IMAGEN_LOGO, height: 100.0,),
+                      Image.asset(foto(index), height: 100.0,),
 
                       SizedBox(height: 15.0,),
                       Text(MenuPrincipal[index].nombre,
@@ -99,6 +106,22 @@ class _InicioState extends State<Inicio> {
         ),
       ),
     );
+  }
+  
+  String foto(int index){
+
+    if (index == 0){ //quemaduras
+      return IMAGEN_LOGO_QUEMADURAS;
+    }else if (index == 1){ //intoxicaciones
+      return IMAGEN_LOGO_INTOXICACIONES;
+    }else if (index == 2){ //convulsiones
+      return IMAGEN_LOGO_CONVULSIONES;
+    }else if (index == 3){ //HEMORRAGIAS
+      return IMAGEN_LOGO_HEMORRAGIAS;
+    }else if (index == 4){ //FRACTUAS
+      return IMAGEN_LOGO_FRACTURAS;
+    }    
+    return "";
   }
 }
 

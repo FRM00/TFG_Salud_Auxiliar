@@ -1,12 +1,8 @@
 /*
+  Autor: Fernando Revilla Maqueda
 
-Widget appBarSA(String nombreUsuario){
-  return AppBar(
-    title: Text(nombreUsuario),
-    backgroundColor: Colors.blue,
-  );
-}
-
+ Este código sigue los términos de la Licencia de Documentación Libre GNU (GNU FDL).
+ Además, está sujeto a los términos de la Licencia Pública General de GNU (GPL).
  */
 
 import 'package:flutter/material.dart';
@@ -59,7 +55,7 @@ class CustomSearchClass extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
     // in this method you will build your search results widget and how would you like to view them on screen
-    //resultados al pulsar enter
+    //resultados disponibles al pulsar enter
 
     final List<String> searchResults = searchList
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
@@ -82,10 +78,6 @@ class CustomSearchClass extends SearchDelegate{
             }else if (searchResults[index] == "Fracturas"){ // fractura
               Navigator.push(context, MaterialPageRoute(builder: (context)=> Fractura()));
             }
-
-            print("cc");
-
-            //close(context, searchResults[index]);
           },
         );
       },
